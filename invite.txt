@@ -7,7 +7,7 @@ with the task of figuring out its semantics. What would you do?
 What if you have a formal executable semantics and you want to build a
 production language? 
 
-If these questions intrigue, visit the web page for the Racket Summer
+If these questions intrigue you, visit the web page for the Racket Summer
 School: 
 
     http://summer-school.racket-lang.org/2017/
