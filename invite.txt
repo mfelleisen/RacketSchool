@@ -1,22 +1,19 @@
 
- The Racket Summer School of Semantics and Languages 
+  The Racket Summer School of Semantics and Languages 
 
-Imagine yourself confronted with a Mystery Programming Language and charged
-with the task of figuring out its semantics. What would you do? 
+Imagine yourself confronted with a Mystery Programming Language and 
+charged with the task of figuring out its semantics. What would you do? 
 
-What if you have a formal executable semantics and you want to build a
-production language? 
+What if you have a formal executable semantics and want to build a
+production language for it?
 
-If these questions intrigue you, visit the web page for the Racket Summer
-School: 
+If these questions intrigue you, attend the Racket Summer School: 
 
-    http://summer-school.racket-lang.org/2017/
+   http://summer-school.racket-lang.org/2017/
 
-Just in case you're wondering, this is not your run-off-the-mill summer
-school, and the lecturers will do their best to make it exciting,
-entertaining, and useful to a broad spectrum of attendees. 
+This is not your run-off-the-mill summer school. We will do our best
+to make it exciting, entertaining, and useful to a broad spectrum of
+attendees, both academic and industrial.
 
-p.s. As soon as you get accepted, we will send you your first problem
-set. So get started. 
-
-
+P.S. As soon as you get accepted, we will send you your first problem
+set. Get ready.
