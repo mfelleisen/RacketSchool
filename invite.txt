@@ -11,7 +11,7 @@ If these questions intrigue you, attend the Racket Summer School:
 
    http://summer-school.racket-lang.org/2017/
 
-This is not your run-off-the-mill summer school. We will do our best
+This is not your run-of-the-mill summer school. We will do our best
 to make it exciting, entertaining, and useful to a broad spectrum of
 attendees, both academic and industrial.
 
