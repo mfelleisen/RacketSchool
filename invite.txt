@@ -1,5 +1,6 @@
 
   The Racket Summer School of Semantics and Languages 
+      	     	    Last Call
 
 Imagine yourself confronted with a Mystery Programming Language and 
 charged with the task of figuring out its semantics. What would you do? 
