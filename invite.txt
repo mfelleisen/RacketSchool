@@ -1,20 +1,117 @@
+Dear …,
 
-  The Racket Summer School of Semantics and Languages 
-      	     	    Last Call
+Thank you for applying to the Racket Summer School. On behalf of our team, I'm delighted to admit you to the event!
 
-Imagine yourself confronted with a Mystery Programming Language and 
-charged with the task of figuring out its semantics. What would you do? 
+Before we can finalize your admission, however, I would like a brief note from (one of) your advisor(s). I don't need a detailed or formal letter a recommendation; I just need to make sure they are aware of your summer plans and approve of your doing this. Therefore, a single sentence (or even word) would suffice to convey this one bit of information.
 
-What if you have a formal executable semantics and want to build a
-production language for it?
+Our program will cover a spectrum of topics linked to the Racket programming language; you can see our tentative schedule here:
 
-If these questions intrigue you, attend the Racket Summer School: 
+https://summer-school.racket-lang.org/2017/
 
-   http://summer-school.racket-lang.org/2017/
+As the Web site says, we have support for students who are currently at US educational institutions. We will automatically provide and direct-bill housing at a University of Utah dorm for Sun through Fri nights (six nights). We will provide breakfast and lunch on the days of the meeting.
 
-This is not your run-of-the-mill summer school. We will do our best
-to make it exciting, entertaining, and useful to a broad spectrum of
-attendees, both academic and industrial.
+We will also cover up to $500 for a plane ticket to Utah that you purchase yourself. The plane ticket must be bought according to the parameters of the Fly America Act, which means that the ticket number must begin with the code for a US airline carrier. (The flight number is not sufficient.) If you are in doubt about the ticket number, please check with us or the ticket seller; most third-party websites that sell tickets (e.g. expedia) will not meet this requirement, most airline websites (e.g. united.com) will. In order to be reimbursed, you must bring a receipt for the plane ticket (showing payment) with you on the first day of the workshop and fill out a form that we will provide (note that a reservation is not sufficient).
 
-P.S. As soon as you get accepted, we will send you your first problem
-set. Get ready.
+We would appreciate your letting us know of your acceptance by Friday, April 21.
+
+Once again, we are excited about your application and look forward to welcoming you at the event!
+
+Matthias, Matthew, Robby, Shriram, Jay and the rest of the Racket team
+
+INDUSTRY ======================================================================
+
+Dear …,
+
+Thank you for applying to the Racket Summer School. On behalf of our team, I'm delighted to admit you to the event!
+
+Our program will cover a spectrum of topics linked to the Racket programming language; you can see our tentative schedule here:
+
+https://summer-school.racket-lang.org/2017/
+
+Because you are not a university student, we are unable to provide financial support. Though we have not formally announced a fee, if your organization would be willing to pay a $1000 fee towards attendance, we can use that money to give a scholarship to an international student (whom we cannot fund through our other sources). But if any or all of that sum is not possible, that's fine, you're still welcome!
+
+In terms of accommodation, while we have arranged dorm housing at the University of Utah, we want to prioritize giving these to students. Once we have filled those slots, we will know whether we will have dorm availability for non-student participants. You are, of course, welcome to make other accommodation arrangements.
+
+If you will need a visa letter, please get in touch immediately with Matthew Flatt (mflatt@cs.utah.edu) so he can generate it.
+
+We would appreciate your letting us know of your intent by Friday, April 21, though we realize you may need more time to arrange for finances.
+
+Once again, we are excited about your application and look forward to welcoming you at the event!
+
+Matthias, Matthew, Robby, Shriram, Jay and the rest of the Racket team
+
+FOREIGN STUDENT ======================================================================
+
+Dear …,
+
+Thank you for applying to the Racket Summer School. On behalf of our team, I'm delighted to admit you to the event!
+
+Our program will cover a spectrum of topics linked to the Racket programming language; you can see our tentative schedule here:
+
+https://summer-school.racket-lang.org/2017/
+
+Because you indicated you are not a student at a US university, our financial aid unfortunately cannot cover you (since it comes from the US National Science Foundation), so we hope you have other means of securing funding. Nevertheless, note that the event itself is free. Though we are arranging for relatively inexpensive dorm housing at the University of Utah, you are not required to use this either, if you have some other way of reducing your costs.
+
+If you will need a visa letter, please get in touch immediately with Matthew Flatt (mflatt@cs.utah.edu) so he can generate it.
+
+We would appreciate your letting us know of your intent by Friday, April 21, though we realize you may need more time to arrange for finances.
+
+Once again, we are excited about your application and look forward to welcoming you at the event!
+
+Matthias, Matthew, Robby, Shriram, Jay and the rest of the Racket team
+
+INTERNATIONAL UNDERGRAD ======================================================================
+
+Dear …,
+
+Thank you for applying to the Racket Summer School. I am currently processing applications.
+
+While we definitely welcome students of all ages, we do want to make sure that students who are not yet in a PhD program have the preparation to succeed at a research-oriented summer school. Therefore, we would like you to provide a brief recommendation letter from a professor who is themselves research-aware. We do not need a formal, full recommendation letter; a one-paragraph note would suffice. I would like acknowledgment that they are aware of the content of the summer school (https://summer-school.racket-lang.org/2017/) and believe you are prepared to handle this kind of material. (You can forward this message to them.)
+
+Please note that because you indicated you are not a student at a US university, our financial aid unfortunately cannot cover you (since it comes from the US National Science Foundation), so we hope you have other means of securing funding. Nevertheless, note that the event itself is free. Though we are arranging for relatively inexpensive dorm housing at the University of Utah, you are not required to use this either, if you have some other way of reducing your costs. So before you ask a professor, it would be wise to make sure the lack of financial support will not be an obstacle.
+
+Once I get their confirmation, I can finish processing your application.
+
+Thanks,
+Matthias, Matthew, Robby, Shriram, Jay and the rest of the Racket team
+
+DOMESTIC UNDERGRAD ======================================================================
+
+Dear …,
+
+Thank you for applying to the Racket Summer School. I am currently processing applications.
+
+While we definitely welcome students of all ages, we do want to make sure that students who are not yet in a PhD program have the preparation to succeed at a research-oriented summer school. Therefore, we would like you to provide a brief recommendation letter from a professor who is themselves research-aware. We do not need a formal, full recommendation letter; a one-paragraph note would suffice. I would like acknowledgment that they are aware of the content of the summer school (https://summer-school.racket-lang.org/2017/) and believe you are prepared to handle this kind of material. (You can forward this message to them.)
+
+Once I get their confirmation, I can finish processing your application.
+
+Thanks,
+Matthias, Matthew, Robby, Shriram, Jay and the rest of the Racket team
+
+OTHER ======================================================================
+
+Dear …,
+
+Thank you for applying to the Racket Summer School. I am currently processing applications.
+
+While we definitely welcome people with diverse technical backgrounds, we really don't see much connection between your past research and the topic of this summer school. As such, it isn't clear to me how it would be useful to you and whether you have the preparation in programming languages research to really get much out of it.
+
+Of course, you probably have various bits of background that are not evident from the information I've seen so far. If you could tell us more about the reason for your application, that would be helpful.
+
+Thanks,
+Matthias, Matthew, Robby, Shriram, Jay and the rest of the Racket team
+
+MIDDLESEX ======================================================================
+
+Hi …,
+
+Thank you for your application to the Racket summer school!
+
+The summer school is really designed for more advanced students, who have most of a bachelor's degree behind them (at least) — basically, either graduate students (master's/PhD) or students who are just about to reach that level. It's as much an introduction to PL research as it is about Racket per se.
+
+It feels to me like you are not quite yet ready for this, and could benefit from some more time at university. Do you agree?
+
+(Also, we are unable to fund international students since our funds come from the US government, so this may anyway be a non-starter.)
+
+Thanks,
+Shriram
