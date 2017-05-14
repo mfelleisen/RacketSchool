@@ -1,35 +1,30 @@
-
 Dear student, 
 
-welcome to the Racket Summer School of Semantics and Languages. Now that we
-have a confirmed list of attendees, it is time to send you the first
-assignment -- as promised in the announcement. 
+Welcome to the Racket Summer School of Semantics and Languages. 
 
-The goal of the first assignment is to establish basic familiarity with
-(mostly)(*) functional programming in Racket. Here are the two suggested
-readings: 
+The goal of the first assignment is to establish basic familiarity
+with (mostly)(*) functional programming in Racket. Here are the two
+readings:
 
- [1] Quick: An Introduction to Racket with Pictures 
- https://docs.racket-lang.org/quick/index.html
+  [1] Quick: An Introduction to Racket with Pictures 
+  https://docs.racket-lang.org/quick/index.html
 
- [2] Real of Racket, especially the last chapter on very simple
- language-oriented programming: 
+  [2] More: Systems Programming with Racket
+  https://docs.racket-lang.org/more/index.html
 
- http://realmofracket.com
- See NoStarch for a sample chapter: 
-   https://www.nostarch.com/download/samples/Realm_ch14.pdf
- PDFs should be available on-line. 
+If you are already a comfortable Racket programmer, you may not find
+anything new in the above; that's fine. We have a very broad range of
+applicants, and it's important for us to bring everyone up to speed
+and on the same page before we begin. (Note: If you experienced the
+Racket teaching languages in an introductory course, do not assume
+that you are sufficiently familiar with Racket.)
  
-Please work through these readings over the next two weeks. If you
-experienced the Racket teaching languages in an introductory course, do not
-assume that you are sufficiently familiar with Racket. The teaching
-languages are miniscule subsets of Racket proper and use syntactic variants
-of Racket constructs. 
+Please work through these readings over the next two weeks. The
+teaching languages are miniscule subsets of Racket proper and use
+syntactic variants of Racket constructs.
 
-In two weeks from now, we will send you a second assignment that dives into
-some more syntax-oriented programming because Redex modeling needs a
-thorough understanding of this idiom.  The third preparatory assignment
-will ask you to deal with the creation of a language. 
+In about ten days we will send you a second assignment. The subsequent
+ones will dive more into language creation with Racket.
 
 -- Your Summer School Team 
 
