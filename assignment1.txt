@@ -15,16 +15,14 @@ readings:
 If you are already a comfortable Racket programmer, you may not find
 anything new in the above; that's fine. We have a very broad range of
 applicants, and it's important for us to bring everyone up to speed
-and on the same page before we begin. (Note: If you experienced the
-Racket teaching languages in an introductory course, do not assume
-that you are sufficiently familiar with Racket.)
+and on the same page before we begin. The later homeworks will teach
+you new content. (Note: If you have experienced only the Racket
+teaching languages, as in an introductory course, do not assume that
+you are sufficiently familiar with Racket.)
  
-Please work through these readings over the next two weeks. The
-teaching languages are miniscule subsets of Racket proper and use
-syntactic variants of Racket constructs.
-
-In about ten days we will send you a second assignment. The subsequent
-ones will dive more into language creation with Racket.
+Please start working through these readings. In a few days we will
+send you a second assignment. The subsequent ones will dive more into
+language creation with Racket.
 
 -- Your Summer School Team 
 
