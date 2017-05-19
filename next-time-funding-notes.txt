@@ -1,0 +1,11 @@
+Ask industrial participants to contribute something up front: $250? We got very few industrial donations but did get some, so there's a trade-off between a few big donations and several smaller ones.
+
+Ask for money from:
+
+- NSF (Anindya)
+- Jane Street
+- SIGPLAN
+
+[[Record here what needs to be done to actually get the $ from all these sources.]]
+
+Ask advisors to have some skin in the game by paying about 10% of student costs.
