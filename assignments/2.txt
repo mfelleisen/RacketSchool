@@ -4,33 +4,42 @@ Here is the second assignment in preparation for the Racket Summer School
 of Semantics and Languages. This assignment aims to introduce the basics 
 of Racket-style language development on a lightweight basis. 
 
-Please work your way through 
+Please work your way through:
 
-  [3] Realm of Racket, the last chapter, titled ")" or "close paren"
-  http://pdf.th7.cn/down/files/1312/Realm%20of%20Racket.pdf
+* Realm of Racket's last chapter, titled ")" or "close paren".
 
   Its third section is a concise introduction to rudimentary Racket
   concepts of language development.  
 
-  You can find PDF copies of Realm of Racket on line by googling. The
-  listed link points to a complete copy of the book.  The book is also
-  available for purchase in hard copy and PDF from No Starch Press. The
-  Publisher is aware that readers have leaked PDFs to the Web.
+  [If you own the book, great. If you want, you can purchase PDF or
+  hard copy from
 
+  https://www.nostarch.com/realmofracket.htm
 
-  [4] F*dging up a Racket
+  You can also find free illicit copies on the Web; e.g.:
+
+  http://pdf.th7.cn/down/files/1312/Realm%20of%20Racket.pdf
+
+  works for now. The publisher is aware that readers have leaked the
+  PDF to the Web.]
+
+* F*dging up a Racket:
+
   http://www.hashcollision.org/brainfudge/
 
-  Danny Yoo's write-up has become a classic among new Racket programmers
-  who wish to go beyond the programming languages and study the 
-  programming-language programming language instead. 
+  Danny Yoo's write-up has become a classic among new Racket
+  programmers who wish to go beyond the programming languages inside
+  Racket and study the programming-language programming language
+  nature of Racket.
 
-Unless you are a well-versed Racket programmer, both of these readings will
-introduce you to new concepts. Indeed, the second one may in parts go
-beyond the summer school material, especially when it comes to parsing
-surface syntax. 
+Unless you are a well-versed Racket programmer, both of these readings
+will introduce you to new concepts. Indeed, the second one may in
+parts go beyond the summer school material, especially when it comes
+to parsing surface syntax.
  
-So please try to wrap up the first "homework" and move on to these two
-readings. 
+So, please try to wrap up the first "homework" and move on to these
+two readings. They are challenging and will take some effort, and you
+may not feel you have mastered the material when you are done. That's
+okay: what matters is trying to work through them.
 
 -- Your Summer School Team 
