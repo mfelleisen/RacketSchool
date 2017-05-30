@@ -31,34 +31,52 @@
 (define ex-ff (term (if-empty "way to go" "hell" "no")))
 
 ;; dealing with records 
-(define ex-rec (term {("one" ("hell")) ("two" "no")}))
+(define ex-rec (term {("one" "hell") ("two" "no")}))
 (define ex-@ (term (,ex-rec @ "two")))
 
 ;; using lambda to name records 
 (define ex3 (term ((λ (r) ((r @ "two") ++ (r @ "one"))) ,ex-rec)))
 
 ;; ---------------------------------------------------------------------------------------------------
-;; substitution
+;; substitution (default)
 
 (module+ test
   (default-language Λ-with-records)
   (test-equal (term (substitute (λ (x) y) y "hell")) (term (λ (x) "hell")))
   (test-equal (term (substitute (λ (x) y) y (x "hell"))) (term (λ (x_1) (x "hell")))))
 
+;; ---------------------------------------------------------------------------------------------------
+;; run-time 
+
+(define-extended-language with-records Λ-with-records
+  (v ::=
+     s
+     {(s v) ...}
+     (λ (x) e))
+  (E ::=
+     hole
+     ;; records 
+     {(s v) ... (s E) (s e) ...}
+     (E @ s)
+     ;; strings
+     (if-empty E e e)
+     (E ++ e)
+     (v ++ E)
+     ;; standard material 
+     (E e)
+     (v E)))
+
 (module+ test
-  (test-equal (term (subst (λ (x) y) y "hell")) (term (λ (x) "hell")))
-  (test-equal (term (subst (λ (x) y) y (x "hell"))) (term (λ (x_1) (x "hell")))))
+  (test--> ->records ex-tt "hell")
+  (test--> ->records ex-ff "no")
+  (test--> ->records ex-@ "no")
+  (test-->> ->records ex3 "nohell"))
 
-(define-metafunction Λ-with-records
-  subst : e x e -> e
-  [(subst x x e) e]
-  [(subst {(s_1 e_1) ...} x e) {(s_1 (subst e_1 x e)) ...}]
-  [(subst (e_r @ s) x e) ((subst e_r x e) @ s)]
-  [(subst s x e) s]
-  [(subst (if-empty e_1 e_2 e_2)) (if-empty (subst e_1 x e) (subst e_2 x e) (subst e_3 x e))]
-  [(subst (e_1 ++ e_2) x e) ((subst e_1 x e) ++ (subst e_2 x e))]
-  [(subst x_y x e) e]
-  [(subst (e_f e_a) x e) ((subst e_f x e) (subst e_a x e))]
-  [(subst (λ (x) e) x e_v) (λ (x) e)]
-  [(subst (λ (x) e) x_y e_v) (λ (x) (subst e x_y e_v))])
-
+(define ->records
+  (reduction-relation with-records
+   (--> (in-hole E ((λ (x) e) v)) (in-hole E (substitute e x v)))
+   (--> (in-hole E (if-empty "" e_then e_else)) (in-hole E e_then))
+   (--> (in-hole E (if-empty s e_then e_else)) (in-hole E e_else)
+        (side-condition (not (equal? (term s) ""))))
+   (--> (in-hole E ({(s_1 v_1) ... (s v) (s_2 v_2) ...} @ s)) (in-hole E v))
+   (--> (in-hole E (s_1 ++ s_2)) (in-hole E ,(string-append (term s_1) (term s_2))))))
