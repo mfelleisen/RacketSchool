@@ -1,0 +1,15 @@
+1. Send mail to Racket list first.
+
+2. Ask Butterick to publicize. He seems to draw in a lot.
+
+3. Change the form:
+
+https://docs.google.com/forms/d/1OIDCaiFMhVmWCooLKaKiOMH2yBD6R3MklHm6q5Ig0to/edit
+
+The question "Tell us a little more about your status" is pretty confusing ("status"?).
+
+4. The confirmation form is here:
+
+https://docs.google.com/forms/d/1Xio5OlvN1sIQI5wUMdbvPMCxAJesanl4PyAKacjYMIE/edit
+
+Again, the question "Are you a FUNDED attendee (US university)?" is confusing, because some of them might be funded by someone else, themselves, etc. We mean "are you funded by US". (Of course, with a better join operator we wouldn't need this question at all…)
