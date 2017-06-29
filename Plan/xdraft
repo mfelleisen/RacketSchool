@@ -1,0 +1,10 @@
+#!/bin/tcsh 
+
+scribble --htmls ++xref-in setup/xref load-collections-xref \
+#          --redirect-main "http://pre.plt-scheme.org/docs/html/" \
+#  "http://docs.plt-scheme.org/" \
+          --dest Tmp/ \
+          summer-school.scrbl 
+
+echo 'done'
+open Tmp/summer-school/index.html
