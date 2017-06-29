@@ -6,18 +6,13 @@
 @title[#:tag "tue-mor"]{The Mystery Language of Records}
 
 @goals[
-
 @item{extend languages with concepts needed for reduction relations}
-
 @item{developing reduction relations}
-
 @item{defining a semantics}
-
 @item{testing against a language}
 ]
 
-@bold{Note} These notes deal with the λβ calculus, specifically its
-reduction system. 
+@bold{Note} These notes deal with the λβ calculus, specifically its reduction system. 
 
 @nested[#:style 'inset
  @tabular[#:sep @hspace[5]
@@ -30,6 +25,47 @@ reduction system.
    @list[ @code{=x}      @t{``calculus'', generated from @code{-->x}, symmetric, transitive, reflexive} ]
    ]]]
 
+@(define at "@")
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-language basic-syntax
+  (p ::= (prog f ... e))
+
+  (f ::= (defun (x x) e))
+
+  (e ::=
+     ;; booleans
+     b
+     (if e e e)
+     ;; numbers
+     n
+     (zero? e)
+     (e + e)
+     ;; strings
+     s
+     (empty? e)
+     (e ++ e)
+     ;; functions & let
+     (function x)
+     (e e)
+     x
+     (let ((x e)) e)
+     ;; records
+     {(s e) ...}
+     (e |@| e))
+  
+  (b ::= true false)
+  (n ::= number)
+  (s ::= string)
+  (x ::= variable-not-otherwise-mentioned)
+
+  #:binding-forms
+  (let ((x e_1)) e_2 #:refers-to x))
+))
+@;%
 
 @; -----------------------------------------------------------------------------
 @section{Contexts, Values}

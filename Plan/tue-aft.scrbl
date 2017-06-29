@@ -11,6 +11,55 @@
 @item{subject reduction}
 ]
 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-language basic-syntax
+  (p ::= (prog f ... e))
+  (f ::= (defun (x x) e))
+  (e ::=
+     ;; booleans
+     b
+     (if e e e)
+     ;; numbers
+     n
+     (zero? e)
+     (e + e)
+     ;; strings
+     s
+     (empty? e)
+     (e ++ e)
+     ;; functions & let
+     (function x)
+     (e e)
+     x
+     (let ((x e)) e))
+
+  (b ::= true false)
+  (n ::= number)
+  (s ::= string)
+  (x ::= variable-not-otherwise-mentioned)
+
+  #:binding-forms
+  (let ((x e_1)) e_2 #:refers-to x))
+))
+@;%
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-extended-language func-syntax-2 basic-lang
+  (p ::= (prog f ... uf ... e))
+  (uf ::= (defun (x x) e)) ; uninitialized functions
+  (f ::= (%defun e (x x) e)) ; initialized functions
+  (e ::= ....
+     (%return x e)))
+))
+@;%
+
+
 @section{Types}
 
 Here is a typed variant of the Lambda language: 

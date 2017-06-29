@@ -6,15 +6,66 @@
 @title[#:tag "wed-mor"]{The Mystery Language of Variables} 
 
 @goals[
-
 @item{revise the language for assignment statements}
-
 @item{a standard reduction system for expression-store tuples}
-
 @item{revise the language for raising exceptions}
-
 @item{a general reduction system for exceptions}
 ]
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-language basic-syntax
+  (p ::= (prog f ... e))
+
+  (f ::= (defun (x x) e))
+
+  (e ::=
+     ;; booleans
+     b
+     (if e e e)
+     ;; numbers
+     n
+     (zero? e)
+     (e + e)
+     ;; strings
+     s
+     (empty? e)
+     (e ++ e)
+     ;; functions & let
+     (function x)
+     (e e)
+     x
+     (let ((x e)) e)
+     ;; records
+     {(s e) ...}
+     (e |@| e))
+  
+  (b ::= true false)
+  (n ::= number)
+  (s ::= string)
+  (x ::= variable-not-otherwise-mentioned)
+
+  #:binding-forms
+  (let ((x e_1)) e_2 #:refers-to x))
+))
+@;%
+
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-extended-language var-syntax basic-lang
+  (f ::= ....
+     (defvar x v))
+  (e ::= ....
+     (set! x e)
+     (begin e ...)))
+))
+@;%
+
 
 @section{Variable Assignment}
 

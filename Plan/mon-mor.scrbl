@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "mon-mor"]{Operational Semantics I}
+@title[#:tag "mon-mor"]{Semantics and Redex}
 
 @goals[
 

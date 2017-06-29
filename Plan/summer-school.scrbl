@@ -9,6 +9,9 @@
 
 @author{Matthias Felleisen}
 
+While I wrote most of these notes, 
+
+
 This summer school introduces attendees to the Racket philosophy of
  analyzing, modeling, and building languages. 
 
