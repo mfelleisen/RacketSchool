@@ -6,3 +6,4 @@
 | --------------- | ------------------------------------------------------- |
 | Plan            | run ./xdraft to view notes 				    |
 | Next 		  | notes about running the summer school		    |
+| assignments 	  | warm-up assignments sent out to participants	    |
