@@ -1,9 +1,8 @@
 # The Racket School of Semantics and Languages 
 
-- invite.txt : let's invite people 
+## explain file/directory structure 
 
-
-## sent to
-
-- types-announce@list. 
-- seworld@sigsoft.org
+| folder	  | purpose			                            |
+| --------------- | ------------------------------------------------------- |
+| Plan            | run ./xdraft to view notes 				    |
+| Next 		  | notes about running the summer school		    |
