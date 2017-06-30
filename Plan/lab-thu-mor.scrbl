@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-thu-mor"]{@bold{Lab} Defining Syntax}
+@title[#:tag "lab-thu-mor"]{@bold{Lab} Practice with Macros}
 
 @goals[
 @item{develop the world's smallest static analysis}

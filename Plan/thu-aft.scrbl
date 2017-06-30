@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "thu-aft"]{Defining Languages} 
+@title[#:tag "thu-aft"]{Hash Langs in Racket} 
 
 @goals[
 @item{@racket[#%module-begin]}

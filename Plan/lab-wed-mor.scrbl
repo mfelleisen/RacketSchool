@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-wed-mor"]{@bold{Lab} Contexts and Stores}
+@title[#:tag "lab-wed-mor"]{@bold{Lab} The Mystery Language of Variables}
 
 @goals[
 @item{develop a general reduction system for Lambda with assignments}

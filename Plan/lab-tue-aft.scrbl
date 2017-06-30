@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-tue-aft"]{@bold{Lab} Type Checking}
+@title[#:tag "lab-tue-aft"]{@bold{Lab} Exploring Functions}
 
 @goals[
 @item{subject reduction testing with @racket[trace]}

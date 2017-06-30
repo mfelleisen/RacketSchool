@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-thu-aft"]{@bold{Lab} Abstracting Abstract Machines II}
+@title[#:tag "lab-thu-aft"]{@bold{Lab} Practice with Hash Lang}
 
 @goals[
 @item{go further with AAM}

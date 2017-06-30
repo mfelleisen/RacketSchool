@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "wed-mor"]{The Mystery Language of Variables} 
+@title[#:tag "wed-mor"]{Modeling Imperative-Functional Languages}
 
 @goals[
 @item{revise the language for assignment statements}

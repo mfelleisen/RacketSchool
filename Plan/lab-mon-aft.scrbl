@@ -3,14 +3,15 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-mon-aft"]{@bold{Lab} Designing Metafunctions}
+@title[#:tag "lab-mon-aft"]{@bold{Lab} Modeling PCF-value}
 
 @goals[
-@item{developing meta-functions}
-@item{discovering Redex patterns}
+@item{turn your PCF-xyz code into a model}
+@item{... with a conditionalized evaluator} 
+@item{... with tests for the reduction relation and the meta-functions}
 ]
 
-@common[]
+@;common[]
 
 @section[#:tag "lma" #:style 'unnumbered]{Exercises}
 

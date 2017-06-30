@@ -4,7 +4,7 @@
 @(require (for-label redex))
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-tue-mor"]{@bold{Lab} Designing Reductions}
+@title[#:tag "lab-tue-mor"]{@bold{Lab} The Mystery Language of Records}
 
 @goals[
 @item{developing reductions}

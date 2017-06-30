@@ -4,7 +4,7 @@
 @(define redex-eval (let ([e (make-base-eval)]) (e '(require redex)) e))
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "mon-aft"]{Modeling Programming Languages}
+@title[#:tag "mon-aft"]{Modeling Functional Expression Languages}
 
 @goals[
 

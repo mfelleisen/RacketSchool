@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "tue-mor"]{The Mystery Language of Records}
+@title[#:tag "tue-mor"]{Modeling Functional Languages}
 
 @goals[
 @item{extend languages with concepts needed for reduction relations}
@@ -19,7 +19,7 @@
 (define-language Records 
   (p ::= (prog f ... e))
 
-  (f ::= (defun (x x) e))
+  (f ::= (define x (lambda (x) e)))
 
   (e ::=
      ;; booleans
