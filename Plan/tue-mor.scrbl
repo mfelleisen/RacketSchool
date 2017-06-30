@@ -12,26 +12,11 @@
 @item{testing against a language}
 ]
 
-@bold{Note} These notes deal with the λβ calculus, specifically its reduction system. 
-
-@nested[#:style 'inset
- @tabular[#:sep @hspace[5]
-          #:row-properties '(bottom-border ())
-  @list[
-   @list[ @t{notation}   @t{meaning} ]
-   @list[ @code{x}       @t{basic notion of reduction, without properties} ]
-   @list[ @code{-->x}    @t{one-step reduction, generated from @code{x}, compatible with syntactic constructions} ]
-   @list[ @code{-->>x}   @t{reduction, generated from @code{-->x}, transitive here also reflexive} ]
-   @list[ @code{=x}      @t{``calculus'', generated from @code{-->x}, symmetric, transitive, reflexive} ]
-   ]]]
-
-@(define at "@")
-
 @;%
 @(begin
 #reader scribble/comment-reader
 (racketblock
-(define-language basic-syntax
+(define-language Records 
   (p ::= (prog f ... e))
 
   (f ::= (defun (x x) e))

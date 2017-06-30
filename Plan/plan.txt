@@ -3,7 +3,7 @@ Monday:
  -- lambda calculus with booleans (if), numbers (+), strings (++) 
 
 Tuesday morning:
- -- add defun and prog 
+ -- add defun and prog during lecture 
  ?? now add syntax for records and let them explore 
 
  ** once they have insights, let's develop a model jointly during lab 

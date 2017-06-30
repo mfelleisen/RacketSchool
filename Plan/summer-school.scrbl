@@ -19,8 +19,9 @@ This summer school introduces attendees to the Racket philosophy of
  analyzing, modeling, and building languages. 
 
 The table below presents a concise summer school schedule. Most sessions
- will consist of a lecture part (60 -- 90 minutes) and a hands-on lab (120-180
- minutes). The lectures will introduce basic ideas; the labs will present
+ will consist of a lecture part and a hands-on lab. Our goal is to lecture
+ for less than 90 minutes and to give you at least 120 minutes of lab
+ time. The lectures will introduce basic ideas; the labs will present
  practical exercises on these topics. We will have a break between lectures
  and labs.
 

@@ -459,3 +459,27 @@ And here are the reductions:
 @;%
 
 Time to get your hands dirty. 
+
+@section{Summary: Theory}
+
+@nested[#:style 'inset
+ @tabular[#:sep @hspace[5]
+          #:row-properties '(bottom-border ())
+  @list[
+   @list[ @t{notation}   @t{meaning} ]
+   @list[ @code{x}       @t{basic notion of reduction, without properties} ]
+   @list[ @code{-->x}    @t{one-step reduction, generated from @code{x}, compatible with syntactic constructions} ]
+   @list[ @code{-->>x}   @t{reduction, generated from @code{-->x}, transitive here also reflexive} ]
+   @list[ @code{=x}      @t{``calculus'', generated from @code{-->x}, symmetric, transitive, reflexive} ]
+   ]]]
+
+@section{Summary: Redex}
+
+@itemlist[
+@item{@racket[define-language]}
+@item{@racket[define-language] with @racket[#:binding-forms]}
+@item{@racket[substitute]}
+@item{contexts}
+@item{@racket[reduction-relation]}
+@item{@racket[eval]}
+]

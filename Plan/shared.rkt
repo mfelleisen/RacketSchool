@@ -5,6 +5,7 @@
   ntt    ;; nested tt 
   common ;; where are the common definitions? 
   (for-label (all-from-out redex))
+  (for-label (all-from-out racket))
   (all-from-out
     "Exercise/ex.rkt"
     scribble/eval
@@ -16,6 +17,7 @@
 (require
   "Exercise/ex.rkt"
   (for-label redex)
+  (for-label racket)
   scribble/manual
   scribble/core
   scribble/eval
