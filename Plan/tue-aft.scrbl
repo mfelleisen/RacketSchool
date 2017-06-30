@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "tue-aft"]{The Mystery Language of Functions}
+@title[#:tag "tue-aft"]{The Mystery Languages of Functions}
 
 @goals[
 @item{typed languages}

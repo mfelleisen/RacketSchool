@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "thu-mor"]{Macro in Racket} 
+@title[#:tag "thu-mor"]{Macros in Racket} 
 
 @goals[
  @item{@racket[define-syntax]}
