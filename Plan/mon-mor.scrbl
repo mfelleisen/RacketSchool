@@ -7,44 +7,125 @@
 
 @goals[
 
-@item{abstract syntax}
-@item{notions of reduction, scope and substitution}
-@item{reductions and calculations}
-@item{semantics}
-@item{standard reduction}
-@item{abstract register machines}
-@item{types}
+@item{Basic Theory: reductions and calculations, @tt{eval}}
+@item{from Theory to Redex}
 
 ]
 
 @; -----------------------------------------------------------------------------
-@section{1928, approximately}
+@section{Theory: Trees, Substitution}
 
-The lambda calculus: most familiar, still misunderstood 
+@bold{Terms vs Trees} The lambda calculus: most familiar, still misunderstood 
 
 @ntt{e = x | (\x.e) | (e e)}
 
 Terms vs trees, abstract over concrete syntax
 
-Encode some forms of primitives: numbers, booleans -- good for theory of
-computation; mostly irrelevant for PL. extensions with primitive data
+Encode some forms of primitives: numbers, booleans---good for theory of
+computation; mostly irrelevant for PL. But let's continue. 
+
+@bold{Substitution} From 8th grade math we know that functions are about
+``plugging values in for variables.'' In our world, this is called
+@defterm{substitution}. Notation: 
+
+@ntt{ e[x <- e'] } pronounced: e with x replaced by e'
+
+Substitution is tree surgery. But there are two ways to think about it: 
+
+@ntt{ (\y.x)[x <- y] == \y.y } if taken literally. 
+
+But @tt{\y.x} is like a constant function @tt{f(y) = x}. The result,
+however, is a function that depends on its variable @tt{f(y) = y}. 
+
+Here is the other way: 
+
+@ntt{ (\y.x)[x <- y] == (\z.x)[x <- y] == \z.y }
+
+Understand scope. Preserve bindings. And this is indeed the first task of
+PL people, too. There are several ways to understand scope: 
+
+@itemlist[
+
+@item{define what it means for a variable to @defterm{bind} and in which
+subtree the binding holds (free variable functions)}
+
+@item{define a theory of renaming (α equivalence relation)}
+
+@item{define equivalence classes of trees (based on α) and define
+operations in terms of those.}
+]
+
+@section{Redex: Languages, Scope, and Substitution}
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-language Lambda1
+  (e ::= x
+         (lambda (x) e)
+         (e e))
+  (x ::= variable-not-otherwise-mentioned))
+))
+@;%
+
+Here are the terms from above: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define e1 (term (lambda (x) y)))
+(define e2 (term (lambda (z) y)))
+
+(default-language Lambda1)
+
+(term (substitute ,e1 y x)) 
+(term (substitute ,e2 y x))
+))
+@;%
+And these are the results we don't want. Because we did not specify scope
+aka binding structure of our language. 
+
+Let's fix that: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-language Lambda
+  (e ::= x
+         (lambda (x) e)
+         (e e))
+  (x ::= variable-not-otherwise-mentioned)
+  #:binding-forms
+  (lambda (x) e #:refers-to x))
+
+(default-language Lambda)
+(term (substitute ,e1 y x))
+(term (substitute ,e2 y x))
+))
+@;%
+And now it all works out. 
+
+Discuss @racket[alpha-equivalence?]
+
+@; -----------------------------------------------------------------------------
+@section{Theory: Laws of Computation}
+
+@ntt{ ((\x.e) e') beta-name e[x <- e'] }
+
+substitute equals for equals. Calculate wherever you want. Contexts. 
+
+@ntt{ ((\x.e) v) beta-value e[x <- v ] }
+
+@; -----------------------------------------------------------------------------
+@section{Redex: Contexts, Reductions, Graphs}
+
+@; -----------------------------------------------------------------------------
+@section{Theory: From Computation to Programming Languages}
+
+Extensions with primitive data
 
 @ntt{e = x | (\x.e) | (e e) | tt | ff | (if e e e)}
-
-What we want: develop LC as a @emph{model} of a PL. Because of history,
-this means two things: a simple logic for calculating with the terms of the
-language @tt{e == e'} and a system for determining the value of a
-program. The former is the @deftech{calculus}, the latter is the
-@deftech{semantics}. 
-
-Both start with basic notions of reduction (axioms). they are just relation
-on terms: @margin-note{People tend to make a mess and mix the two
-notations}
-
-@ntt{ ((\x.e) e') beta e[x=e'] } pronounced: e with x replaced by e'
-@ntt{ ((\x.e) e') beta [e'/x]e} pronounced substitute e' for x in e 
-
-@bold{Think} substitution via tree surgery, preserving bindings 
 
 Here are two more, often done via external interpretation functions (δ)
 
