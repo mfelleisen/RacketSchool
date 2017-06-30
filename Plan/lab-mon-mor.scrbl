@@ -14,7 +14,7 @@
 
 @;common[]
 
-@section[#:tag "lma" #:style 'unnumbered]{Exercises}
+@section[#:tag "lmm" #:style 'unnumbered]{Exercises}
 
 @exercise["ex:pcf"]{Design a variant of PCF that passes its arguments by
 value. This task requires: 
