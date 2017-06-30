@@ -1,17 +1,33 @@
 
 Monday: 
- -- lambda calculus with booleans (if), numbers (+), strings (++) 
+ MF lambda calculus and PCF with booleans (if), numbers (+), strings (++) 
 
 Tuesday morning:
- -- add defun and prog during lecture 
- ?? now add syntax for records and let them explore 
-
- ** once they have insights, let's develop a model jointly during lab 
-
+ MF add define and prog during lecture 
+ SK add syntax for records; let them explore; discuss; jointly develop a model 
 
 Tuesday afternoon: 
- -- I will let Shriram and Justin run this one 
+ SK present the syntaxes of the MPLs of Functions; explore; discuss;
+    let them develop a model of one and three; 
+    jointly develop a model for two? 
 
 Wednesday morning: 
- -- add set! to lc
+ MF add set set! to PCF with definitions 
+ SK present the syntax of variables; explore; discuss; develop models
 
+Wednesday afternoon: 
+ SK lecture on results in semantics re-engineering 
+
+Thursday morning: 
+ MF lecture on macros 
+ lab: define macros, support one of the mystery languages 
+
+Thursday afternoon: 
+ MF lecture on hash langs; turn Redex model into hash lang 
+lab: develop a hash lang with macros from morning or new ones 
+
+Friday morning: 
+ MF lecture on redex random testing on properties 
+    comparing an implementation with a model 
+ lab: let them develop random tests to compare their models and
+    implementations 
