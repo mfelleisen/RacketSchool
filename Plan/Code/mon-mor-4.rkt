@@ -60,8 +60,9 @@
 
 ;; -----------------------------------------------------------------------------
 ;; evaluate term e with the transitive closure of ->name 
-(define (eval e)
-  (first (apply-reduction-relation* ->name e)))
+(define-metafunction PCF-eval
+  eval : e -> v
+  [(eval e) ,(first (apply-reduction-relation* ->name (term e)))])
 
 (define e3
   (term
@@ -74,10 +75,10 @@
      (1 + (1 + 1)))
     (2 + 2))))
 
-(eval e3)
+(term (eval ,e3))
 (traces ->name e3)
 
-(eval e4)
+(term (eval ,e4))
 (traces ->name e4)
 
 ;; Let's diagnose the bug in this language model 
