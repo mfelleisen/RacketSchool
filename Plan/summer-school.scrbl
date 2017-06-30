@@ -7,10 +7,13 @@
 @; ---------------------------------------------------------------------------------------------------
 @title[#:tag "redex2015"]{The Racket School of Semantics and Languages 2017}
 
-@author{Matthias Felleisen}
-
-While I wrote most of these notes, 
-
+@margin-note{
+Matthias Felleisen, 
+Robert Bruce Findler, 
+Matthew Flatt, 
+Shriram Krishnamurthi, 
+Jay McCarthy, 
+and Justin Pombrio}
 
 This summer school introduces attendees to the Racket philosophy of
  analyzing, modeling, and building languages. 

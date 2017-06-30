@@ -4,9 +4,10 @@
 
 ;; -----------------------------------------------------------------------------
 (define-language Lambda1
-  (e ::= x
-         (lambda (x) e)
-         (e e))
+  (e ::=
+     x
+     (lambda (x) e)
+     (e e))
   (x ::= variable-not-otherwise-mentioned))
 
 (define e1 (term (lambda (x) y)))
@@ -18,9 +19,10 @@
 
 ;; -----------------------------------------------------------------------------
 (define-language Lambda
-  (e ::= x
-         (lambda (x) e)
-         (e e))
+  (e ::=
+     x
+     (lambda (x) e)
+     (e e))
   (x ::= variable-not-otherwise-mentioned)
   #:binding-forms
   (lambda (x) e #:refers-to x))
