@@ -45,10 +45,18 @@ some depth.
 
 @ntt{e = x | (λx.e) | (e e)}
 
-Terms vs trees, abstract over concrete syntax
-
-Encode some forms of primitives: numbers, booleans---good for theory of
-computation; mostly irrelevant for PL. But let's continue. 
+Terms vs trees, abstract over concrete syntax. Don't ever think of
+@tt{(λx.(x (λy.y)))} as a string or sequence of chars; always think of it
+as a tree: 
+@verbatim[#:indent 4]{
+    λx.
+    | 
+   app
+   / \
+  x   λy.
+       |
+       y
+}
 
 @bold{Substitution} From 8th grade math we know that functions are about
 ``plugging values in for variables.'' In our world, this is called
@@ -136,7 +144,7 @@ And now it all works out.
 Discuss @racket[alpha-equivalent?]
 
 @; -----------------------------------------------------------------------------
-@section{Theory: Laws of Computation}
+@section{Theory: Laws of Calculation}
 
 What are doing when we calculate? What do we mean when we write @math{=}, as in, 
 @ntt{
@@ -167,18 +175,21 @@ numbers. So we need a relation that models the fundamental idea of function
 application. Here are three of them: 
 @itemlist[
  
-@item{@ntt{ ((λx.e) e') beta-x e } 
+@item{@ntt{ ((λx.e) e') beta-x e }
 
 This one is totally weird. Functions always ignore their argument. That is
-not what we want. Here is what we want: 
+not what we want.}]
+
+Here is what we want: 
 @verbatim[#:indent 4]{
 f(x) = 3 * (x + 1)
 ------------------
 f(1) = 3 * (1 + 1)
      = 3 * 2 
      = 6 
-}}
+}
 
+@itemlist[
 @item{@ntt{ ((λx.e) e') beta-y e[x <- e'] }
 
 This one is better than the first but if we add arithmetic, odd things
@@ -313,13 +324,14 @@ Here is the result:
 @centerline{@image{Images/traces1.png}}
 
 @; -----------------------------------------------------------------------------
-@section{Theory: From Computation to Programming Languages}
+@section{Theory: From Calculation to Programming Languages}
 
-(1) Programming language people are primarily interested in evaluation and
-secondarily in reasoning about evaluation. Calculations supports the latter
-but is really miserable for the former---because it requires search through
-a graph to find the result. Fortunately, mathematicians prove theorems and
-programming language people know how to exploit them.
+(1) Programming language people are primarily interested in evaluating
+programs, and secondarily in reasoning about evaluation. Calculations
+supports both. It is good for the latter but is really miserable for the
+former---because it requires search through a graph to find the
+result. Fortunately, mathematicians prove (meta)theorems, and programming
+language people know how to exploit those.
 
 @bold{Theorem} If @tt{e} relates to @tt{e'} in a reduction graph, then
 there exists a path of a particular shape. On this path, it is always the
@@ -364,7 +376,7 @@ representation of the number @tt{n}. When we write @tt{<n + 1>} we are
 referring to the numeral that represents the successor of numeral
 @tt{<n>}. So here is the δ reduction for numbers: 
 
-@ntt{(<n> + <m>) arithmetic <n + m>}. 
+@ntt{(<n> + <m>) arithmetic <n + m>}
 
 @; -----------------------------------------------------------------------------
 @section{Redex: Evaluators for Programming Languages}
@@ -471,6 +483,10 @@ Time to get your hands dirty.
    @list[ @code{-->x}    @t{one-step reduction, generated from @code{x}, compatible with syntactic constructions} ]
    @list[ @code{-->>x}   @t{reduction, generated from @code{-->x}, transitive here also reflexive} ]
    @list[ @code{=x}      @t{``calculus'', generated from @code{-->x}, symmetric, transitive, reflexive} ]
+   @list[ @tt{|-->x}   @t{standard reduction (one-step, multi-step), via meta-theorem} ]
+   @list[ @tt{|-->>x}  'cont]
+   @list[ @code{eval}    @t{functions, definable from @code{-->>x}, @code{=x}, or @tt{|-->>x}} ]
+   @list[ @code{ }       @t{(equivalence from meta-theorems)} ]
    ]]]
 
 @section{Summary: Redex}
@@ -481,5 +497,5 @@ Time to get your hands dirty.
 @item{@racket[substitute]}
 @item{contexts}
 @item{@racket[reduction-relation]}
-@item{@racket[eval]}
+@item{@racket[eval], via Racket's @racket[define] for now}
 ]
