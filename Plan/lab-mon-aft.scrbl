@@ -15,10 +15,14 @@
 
 @section[#:tag "lma" #:style 'unnumbered]{Exercises}
 
-@exercise["ex:bv"]{Design @racket[bv]. The metafunction determines the
-bound variables in a @racket[Lambda] expression. A variable @racket[x] is 
-@defterm{bound in @racket[e_Lambda]} if @racket[x] occurs in a
-@racket[lambda]-parameter list in e_@racket[Lambda].}
+Feel free to copy any code you need from the lecture notes. 
+
+@exercise["ex:plus"]{Define a version of PCF where @racket[plus] works on
+natural numbers only. It works on those exactly like Racket.}
+
+@exercise["ex:minus"]{Equip PCF with @racket[minus] which works on
+natural numbers only. When the second argument is too large, @racket[minus]
+produces 0.}
 
 @exercise["ex:lookup"]{Design @racket[lookup]. The metafunction consumes a
 variable and an @tech{environment}. It determines the leftmost expression
@@ -80,17 +84,21 @@ Before you get started, make sure you can create examples of
     (x y y y))))
 ))
 @;%
- or 
-@;%
-@(begin
-#reader scribble/comment-reader
-(racketblock
-(term 
- (bv
-  (let ((x (lambda (a b c) a))
-        (y (lambda (x) x)))
-    (x y y y))))
-))
-@;%
- produces the expected results. What are those?}
+ produces the expected result. What is that? Formulate a test case.}
 
+@exercise["ex:sd"]{Develop the static-distance function for Lambda. 
+
+First, extend Lambda with the form @racket[(sd n)] where @racket[n] stands
+for naturals. 
+
+Second, define the meta-function @racket[sd]. It consumes a term in plain
+Lambda and delivers one in the extended language where all bound variable
+references are replaced with @racket[(sd n)] where @racket[n] counts the
+number of @racket[lambda]s between the bound occurrence of the variable and
+the binding occurrence.
+
+Third, start by formulating examples/tests.
+
+Fourth, this exercise is hard if you did not go through an introduction to
+systematic function design (and even then it might be hard). Give it a try,
+but don't get frustrated if you don't finish it today. }

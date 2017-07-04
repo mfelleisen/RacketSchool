@@ -16,6 +16,28 @@
 
 (default-language Lambda)
 
+
+(define ex1 (term y))
+(define ex2 (term (lambda (y) y)))
+(define ex3 (term (lambda (x) y)))
+(define ex4 (term (,ex2 ,ex3)))
+
+ex4
+
+;; -----------------------------------------------------------------------------
+(define Lambda? (redex-match? Lambda e))
+
+(test-equal (Lambda? ex1) #true)
+(test-equal (Lambda? ex2) #true)
+(test-equal (Lambda? ex3) #true)
+(test-equal (Lambda? ex4) #true)
+
+(define eb1 (term (lambda (x x) y)))
+(define eb2 (term (lambda (x) 3)))
+
+(test-equal (Lambda? eb1) #false)
+(test-equal (Lambda? eb2) #false)
+
 ;; -----------------------------------------------------------------------------
 (define-extended-language Lambda-calculus Lambda
   (E-name ::=
@@ -54,12 +76,12 @@ e3-evaluated
 
 ;; -----------------------------------------------------------------------------
 (define-metafunction Lambda-calculus
-  eval-2 : e -> v or unbound-variables
+  eval-2 : e -> v or (unbound-variables (x ...))
   [(eval-2 e)
-   ,(first (apply-reduction-relation* ->name (term e)))
-   (where () (fv e))]
+   (where () (fv e))
+   (where (one-term) ,(apply-reduction-relation* ->name (term e)))]
   [(eval-2 e)
-   unbound-variables])
+   (unbound-variables (fv e))])
 
 (define-metafunction Lambda-calculus
   fv : e -> (x ...)
@@ -82,6 +104,6 @@ e3-evaluated
 (test-equal (term (minus (z w x y) x)) (term (z w y)))
 
 (test--> ->name e3 e3-evaluated)
-(test--> ->name e3 (term z))
+(test--> ->name e3 (term z) "some tests fail") ;; some test fail 
 
 (term (eval-2 ,e3))

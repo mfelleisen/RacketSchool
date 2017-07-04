@@ -16,6 +16,8 @@
 
 @section[#:tag "lmm" #:style 'unnumbered]{Exercises}
 
+Feel free to copy any code you need from the lecture notes. 
+
 @; -----------------------------------------------------------------------------
 @exercise["ex:pcf"]{Design a variant of PCF, including the evaluator, that
 passes its arguments by value. This task requires: 
