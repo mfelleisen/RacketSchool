@@ -81,5 +81,7 @@ e3-evaluated
 (test-equal (term (minus (x y) x)) (term (y)))
 (test-equal (term (minus (z w x y) x)) (term (z w y)))
 
+(test--> ->name e3 e3-evaluated)
+(test--> ->name e3 (term z))
 
 (term (eval-2 ,e3))
