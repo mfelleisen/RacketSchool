@@ -32,6 +32,10 @@ By Wednesday afternoon, you might be exhausted from the breakneck speed of
  feel comfortable. If you'd rather hang around and work on something, some
  of us will be available to help you along.
 
+Thursday afternoon Matthew F. will take you from extending languages to
+ building complete languages. You will use a small amount of this material
+ on Friday morning to build your first "hash lang."
+
 Robby F.'s Friday afternoon lecture will cover his experience with random
  testing and how to best use Redex's current random-testing facilities. 
  Again, no lab is scheduled to follow this lecture. Instead, feel free to

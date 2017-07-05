@@ -3,9 +3,12 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "thu-aft"]{Hash Langs in Racket} 
+@title[#:tag "thu-aft"]{* Building Languages} 
+
+@author{Matthew Flatt}
 
 @goals[
 @item{@racket[#%module-begin]}
 @item{@racket[#%top-interaction]}
+@item{conventional syntax}
 ]
