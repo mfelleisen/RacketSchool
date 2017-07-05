@@ -50,7 +50,7 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
  #:row-properties '(bottom-border top)
  #:column-properties '(left)
 @list[
-@list[@t{ }          @t{Morning (8:30 -- noon)}          @t{Afternoon (13:00 -- 17:00)}]
+@list[@t{ }          @t{Morning (9:00 -- 12:30)}          @t{Afternoon (13:30 -- 17:00)}]
 @; -------------------------------------------------------------------------------------
 @list[ @t{Monday}    @t{@secref{mon-mor}}                @secref{mon-aft}]
 @list[ @t{ }         @t{@secref{lab-mon-mor}}            @secref{lab-mon-aft}]
