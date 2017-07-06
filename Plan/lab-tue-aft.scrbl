@@ -85,7 +85,10 @@ and modify it as necessary to have the behavior of @tt{Functions1}.
 
 Next, modify the @tt{basic} language to instead behave like @tt{Functions2}.
 
-Finally, if you have time, try @tt{Functions3}.}
+Finally, if you have time, try @tt{Functions3}. For this language
+variant, you may want to add new syntax to the language that isn't
+part of the surface syntax, but instead only to help represent
+intermediate steps of evaluation. Feel free to do so.}
 
 @; -----------------------------------------------------------------------------
 @exercise["ex:mystery-semantics-functions"]{
