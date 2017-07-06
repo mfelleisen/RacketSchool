@@ -36,11 +36,11 @@ extensions):
      ;; numbers
      n
      (zero? e)
-     (e + e)
+     (+ e e)
      ;; strings
      s
      (empty? e)
-     (e ++ e)
+     (++ e e)
      ;; functions & let
      (function x)
      (e e)
@@ -56,15 +56,16 @@ extensions):
      s
      (function x))
   #:binding-forms
-  (let ((x e_1)) e_2 #:refers-to x))))
+  (let ((x e_1)) e_2 #:refers-to x))
+))
 @;%
 
 As before, the @tt{#lang}s hide the @tt{(prog ...)} part of the grammar,
 so your programs can simply have the form @tt{f ... e}.
 For example, this program:
 @verbatim{
-  (defvar x 1)
-  (begin (set! x 2) x)
+  (defun (f x) (+ x 1))
+  (f 1)
 }
 produces the number 2 in all of the languages.
 

@@ -43,11 +43,11 @@ these languages:
      ;; numbers
      n
      (zero? e)
-     (e + e)
+     (+ e e)
      ;; strings
      s
      (empty? e)
-     (e ++ e)
+     (++ e e)
      ;; functions & let
      (function x)
      (e e)
@@ -67,10 +67,10 @@ these languages:
 
 (define-extended-language record-syntax basic-lang
   (e ::= ....
-     {(s e) ...}
-     (e |@| e))
+     (record (s e) ...)
+     (|@| e e))
   (v ::= ....
-     {(s v) ...}))
+     (record (s v) ...)))
 ))
 @;%
 
@@ -79,8 +79,8 @@ though, so your programs can simply have the form @tt{f ... e}. For
 example, this program:
 @verbatim{
   (defun (f rec)
-    (rec @literal|{@}| "a_field"))
-  (f {("a_field" 1)})
+    (@literal|{@}| rec "a_field"))
+  (f (record ("a_field" 1)))
 }
 produces the number 1 in all of the languages.
 

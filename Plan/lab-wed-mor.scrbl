@@ -34,11 +34,11 @@ Variables1}, etc. Here is the syntax for these languages:
      ;; numbers
      n
      (zero? e)
-     (e + e)
+     (+ e e)
      ;; strings
      s
      (empty? e)
-     (e ++ e)
+     (++ e e)
      ;; functions & let
      (function x)
      (e e)
@@ -61,7 +61,8 @@ Variables1}, etc. Here is the syntax for these languages:
      (defvar x v))
   (e ::= ....
      (set! x e)
-     (begin e ...)))))
+     (begin e ...)))
+))
 @;%
 
 As before, the @tt{#lang}s hide the @tt{(prog ...)} part of the grammar,
