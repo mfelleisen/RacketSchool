@@ -6,8 +6,8 @@
 @title[#:tag "lab-fri-mor"]{@bold{Lab} Testing Models, Testing Languages}
 
 @goals[
-@item{developing meta-functions}
-@item{discovering Redex patterns}
+ @item{build a Records language} 
+ @item{compare the Records specification}
 ]
 
 @;common[]
