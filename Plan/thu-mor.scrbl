@@ -8,6 +8,7 @@
 @goals[
  @item{@racket[define-syntax]}
  @item{@racket[syntax-parse]}
+ @item{@racket[define-syntax-class]}
 ]
 
 
