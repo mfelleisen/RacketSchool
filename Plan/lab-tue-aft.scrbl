@@ -3,55 +3,99 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "lab-tue-aft"]{@bold{Lab} Exploring Mystery Languages of Functions}
+@title[#:tag "lab-tue-aft"]{@bold{Lab} The Mystery Languages of Functions}
 
 @goals[
-@item{subject reduction testing with @racket[trace]}
-@item{typing judgments}
+@item{analyzing semantic variations of a syntactic language}
+@item{modeling the semantics}
 ]
 
-@common[]
+@;common[]
 
-In addition to @filepath{common.rkt}, you also want to @racket[require]
-@link["tc-common.rkt"]{tc-common.rkt} for this lab. Furthermore, if you
-copy code from @secref{tue-aft}, make sure to copy the tests and to adapt
-the tests as you develop the machines.
-		  
-@; -----------------------------------------------------------------------------
-@section[#:tag "lta" #:style 'unnumbered]{Exercises}
+One syntax may have many semantics. We will give you three mystery
+languages that have the same syntax but different semantics, and your
+task will be to find programs that tell them apart.
 
-@exercise["ex:typing-trace"]{Develop a reduction system for which the
-@racket[trace] expression from the lecture preserves types
+This lab's mystery languages are called @tt{Functions1},
+@tt{Functions2}, and @tt{Functions3}. Run them with @tt{#lang
+Functions1}, etc. Here is the syntax for these languages (it is simply
+the syntax of the @tt{basic} language; there are no syntactic
+extensions):
 
 @;%
 @(begin
 #reader scribble/comment-reader
 (racketblock
-(module+ test
-  (traces ->
-          (term (((lambda ((x (int -> int))) x) (lambda ((x int)) x)) 1))
-          #:pred (lambda (e)
-                   (judgment-holds (⊢ () ,e int)))))
-))
+(define-language basic-syntax
+  (p ::= (prog f ... e))
+  (f ::= (defun (x x) e))
+  (e ::=
+     ;; booleans
+     b
+     (if e e e)
+     ;; numbers
+     n
+     (zero? e)
+     (e + e)
+     ;; strings
+     s
+     (empty? e)
+     (e ++ e)
+     ;; functions & let
+     (function x)
+     (e e)
+     x
+     (let ((x e)) e))
+  (x ::= variable-not-otherwise-mentioned)
+  (b ::= true false)
+  (n ::= number)
+  (s ::= string)
+  (v ::=
+     b
+     n
+     s
+     (function x))
+  #:binding-forms
+  (let ((x e_1)) e_2 #:refers-to x))))
 @;%
+
+As before, the @tt{#lang}s hide the @tt{(prog ...)} part of the grammar,
+so your programs can simply have the form @tt{f ... e}.
+For example, this program:
+@verbatim{
+  (defvar x 1)
+  (begin (set! x 2) x)
 }
+produces the number 2 in all of the languages.
 
-@exercise["ex:typing"]{Extend @racket[TLambda] with syntax for the
-following:
-@;
-@itemlist[
+@; -----------------------------------------------------------------------------
+@exercise["ex:analyze-functions"]{
 
-@item{additional numeric operators, say, multiplication, subtraction, and
-division;} 
+Explore the differences between @tt{Functions1}, @tt{Functions2},
+and @tt{Functions3}. Explain their behaviors, and find programs that
+support your explanation. These mystery languages differ in how they
+treat function calls, so focus on that when trying to tell them apart.}
 
-@item{@racket[let] expressions;}
+@; -----------------------------------------------------------------------------
+@exercise["ex:implement-functions"]{
 
-@item{Boolean constants plus strict and and or operators as well as a
-branching construct;}
+Your next task is to implement these languages. Begin as before with the
+@hyperlink["https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt"]{@tt{basic} Redex language},
+and modify it as necessary to have the behavior of @tt{Functions1}.
 
-@item{lists, specifically constructors and selectors (de-constructors);}
+Next, modify the @tt{basic} language to instead behave like @tt{Functions2}.
 
-@item{explicitly recursive function definitions.}
-]
-Completing the above list is an ambitious undertaking, but do try to
-complete at least two or three of these tasks.}
+Finally, if you have time, try @tt{Functions3}.}
+
+@; -----------------------------------------------------------------------------
+@exercise["ex:mystery-semantics-functions"]{
+
+@bold{SPOILER: Do not click on link} until you have finished the above
+two exercises.
+
+Now we'll do the opposite.
+@hyperlink["https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-functions.rkt"]{Here}
+is a Redex semantics
+that extends the @tt{basic} language. @italic{Without running any
+programs}, how does it differ from @tt{Functions1}? What programs
+@italic{would} you run to exhibit the differences?}

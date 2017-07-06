@@ -13,13 +13,12 @@
 
 @;common[]
 
-[FILL]: describe mystery languages. (How much to speak and how much to write?)
-
 One syntax may have many semantics. We will give you three mystery
 languages that have the same syntax but different semantics, and your
 task will be to find programs that tell them apart.
 
-To install the mystery languages, in DrRacket [FILL].
+To install the mystery languages, in DrRacket ...
+[TODO: register languages at http://pkgs.racket-lang.org/]
 Alternatively, you can run the following command:
 @verbatim{
 raco pkg install https://github.com/justinpombrio/RacketSchool
@@ -27,18 +26,16 @@ raco pkg install https://github.com/justinpombrio/RacketSchool
 
 The three languages are called @tt{Records1}, @tt{Records2}, and
 @tt{Records3}. Once you have installed them, you can run them in
-Dr. Racket with @tt{#lang Records1}, etc. Here is the syntax for
+DrRacket with @tt{#lang Records1}, etc. Here is the syntax for
 these languages:
 
 @;%
 @(begin
 #reader scribble/comment-reader
 (racketblock
-(define-language Records 
+(define-language basic-syntax
   (p ::= (prog f ... e))
-
   (f ::= (defun (x x) e))
-
   (e ::=
      ;; booleans
      b
@@ -55,18 +52,25 @@ these languages:
      (function x)
      (e e)
      x
-     (let ((x e)) e)
-     ;; records
-     {(s e) ...}
-     (e |@| e))
-  
+     (let ((x e)) e))
+  (x ::= variable-not-otherwise-mentioned)
   (b ::= true false)
   (n ::= number)
   (s ::= string)
-  (x ::= variable-not-otherwise-mentioned)
-
+  (v ::=
+     b
+     n
+     s
+     (function x))
   #:binding-forms
   (let ((x e_1)) e_2 #:refers-to x))
+
+(define-extended-language record-syntax basic-lang
+  (e ::= ....
+     {(s e) ...}
+     (e |@| e))
+  (v ::= ....
+     {(s v) ...}))
 ))
 @;%
 
@@ -78,10 +82,10 @@ example, this program:
     (rec @literal|{@}| "a_field"))
   (f {("a_field" 1)})
 }
-produces the number 1 in all of the languages. [TODO: test].
+produces the number 1 in all of the languages.
 
 @; -----------------------------------------------------------------------------
-@exercise["ex:analyze"]{
+@exercise["ex:analyze-records"]{
 
 Explore the differences between @tt{Records1}, @tt{Records2},
 and @tt{Records3}. Explain their behaviors, and find programs that
@@ -89,23 +93,27 @@ support your explanation. These mystery languages differ in how they
 treat records, so focus on that when trying to tell them apart.}
 
 @; -----------------------------------------------------------------------------
-@exercise["ex:implement"]{
+@exercise["ex:implement-records"]{
 
 Your next task is to implement these languages. Begin with this
-[LINK: basic Redex language], and extend it with the syntax above to
+@hyperlink["https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt"]{@tt{basic} Redex language},
+and extend it with the syntax above to
 handle records, with the behavior of @tt{Records1}.
+[TODO: activate this link]
 
-Next, extend the language to instead behave like @tt{Records2}.
+Next, extend the @tt{basic} language to instead behave like @tt{Records2}.
 
 Finally, if you have time, try @tt{Records3}.}
 
 @; -----------------------------------------------------------------------------
-@exercise["ex:mystery-semantics"]{
+@exercise["ex:mystery-semantics-records"]{
 
-@bold{SPOILER: do not click on link} until you have finished the first
+@bold{SPOILER: Do not click on link} until you have finished the above
 two exercises.
 
-Now we'll do the opposite. [LINK: here] is a Redex @italic{semantics}
-that extends the @tt{basic} language. Without running any
-programs, how does it differ from @tt{Records1}? What program
-@italic{would} you run to exhibit the difference?}
+Now we'll do the opposite.
+@hyperlink["https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-records.rkt"]{Here}
+are two Redex semantics
+that extends the @tt{basic} language. @italic{Without running any
+programs}, how do they differ from @tt{Records1}? What programs
+@italic{would} you run to exhibit the differences?}
