@@ -4,10 +4,12 @@
 
 ;; -----------------------------------------------------------------------------
 (define-language PCF
-  (p ::=
-     (prog (d ...) e))
-  (d ::=
-     (defun (x x) e))
+  (p ::= 
+     (prog (f ...) e))
+
+  (f ::=
+     (define x (lambda (x) e)))
+     
   (e ::=
      x
      (lambda (x) e)
@@ -21,7 +23,6 @@
      ;; arithmetic
      n
      (e + e))
-  
   (n ::=
      integer)
 
@@ -34,11 +35,13 @@
 
 ;; -----------------------------------------------------------------------------
 (define-extended-language PCF-eval PCF
+  (P-name ::=
+          (prog (f ...) E-name))
   (E-name ::=
-     hole
-     (E-name e)
-     (E-name + e)
-     (v + E-name))
+          hole
+          (E-name e)
+          (E-name + e)
+          (v + E-name))
   (v ::=
      n
      tt
@@ -48,41 +51,61 @@
 (define ->name
   (reduction-relation
    PCF-eval
-   #:domain e
-   (--> (in-hole E-name ((lambda (x) e_1) e_2))
-        (in-hole E-name (substitute e_1 x e_2))
+   #:domain p
+   (--> (in-hole P-name ((lambda (x) e_1) e_2))
+        (in-hole P-name (substitute e_1 x e_2))
         beta-name)
-   (--> (in-hole E-name (if tt e_1 e_2))
-        (in-hole E-name e_1)
+   (--> (in-hole P-name (if tt e_1 e_2))
+        (in-hole P-name e_1)
         if-tt)
-   (--> (in-hole E-name (if ff e_1 e_2))
-        (in-hole E-name e_2)
+   (--> (in-hole P-name (if ff e_1 e_2))
+        (in-hole P-name e_2)
         if-ff)
-   (--> (in-hole E-name (n_1 + n_2))
-        (in-hole E-name ,(+ (term n_1) (term n_2)))
-        plus)))
+   (--> (in-hole P-name (n_1 + n_2))
+        (in-hole P-name ,(+ (term n_1) (term n_2)))
+        plus)
+
+   (--> (prog ((define x_1 v_1) ... (define x v) (define x_2 v_2) ...)
+              (in-hole E-name x))
+        (prog ((define x_1 v_1) ... (define x v) (define x_2 v_2) ...)
+              (in-hole E-name v))
+        retrieve)))
 
 ;; -----------------------------------------------------------------------------
 ;; evaluate term e with the transitive closure of ->name 
 (define-metafunction PCF-eval
-  eval : e -> v
-  [(eval e) ,(first (apply-reduction-relation* ->name (term e)))])
+  eval : p ->  v or error 
+  [(eval p) v
+   (where ((prog (f ...) v)) ,(apply-reduction-relation* ->name (term p)))]
+  [(eval p) error])
 
 (define e3
   (term
-   ((lambda (x) (lambda (y) x))
-    ((lambda (x) x) z))))
+   (prog ()
+         ((lambda (x) (lambda (y) x))
+          ((lambda (x) x) z)))))
 
 (define e4
   (term
-   (((lambda (x) (lambda (y) x))
-     (1 + (1 + 1)))
-    (2 + 2))))
+   (prog ()
+         (((lambda (x) (lambda (y) x))
+           (1 + (1 + 1)))
+          (2 + 2)))))
 
 (term (eval ,e3))
 (traces ->name e3)
 
 (term (eval ,e4))
 (traces ->name e4)
+
+(define e5
+  (term 
+   (prog ((define f (lambda (x) (if x g h)))
+          (define g (lambda (x) 42))
+          (define h (lambda (y) 21)))
+         ((f tt) 5))))
+
+(term (eval ,e5))
+         
 
 ;; Let's diagnose the bug in this language model 
