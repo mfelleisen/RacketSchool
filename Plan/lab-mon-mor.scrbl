@@ -23,7 +23,7 @@ Feel free to copy any code you need from the lecture notes.
 passes its arguments by value. This task requires: 
 @itemlist[
 
-@item{the use of @tt{beta-z} instead of @tt{beta-z}}
+@item{the use of @tt{beta-z} instead of @tt{beta-y}}
 
 @item{a reflection on the relations for basic arithmetic}
 
