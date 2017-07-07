@@ -202,3 +202,12 @@ We can even express this as a test:
 ))
 @;%
 But let's not get carried away. 
+
+
+@itemlist[
+
+@item{multiple clauses}
+@item{recursion?} 
+@item{literals}
+
+]

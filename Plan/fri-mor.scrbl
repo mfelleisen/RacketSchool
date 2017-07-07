@@ -9,3 +9,7 @@
  @item{building a language from specification}
  @item{testing languages against specifications}
 ]
+
+@(require "fri-diagram.rkt")
+
+@impl-vs-spec[.6]
