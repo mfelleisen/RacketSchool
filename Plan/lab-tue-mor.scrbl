@@ -17,17 +17,20 @@ One syntax may have many semantics. We will give you three mystery
 languages that have the same syntax but different semantics, and your
 task will be to find programs that tell them apart.
 
-To install the mystery languages, in DrRacket ...
-[TODO: register languages at http://pkgs.racket-lang.org/]
-Alternatively, you can run the following command:
+To install the mystery languages, in DrRacket select
+File/InstallPackage, and enter
+@tt{racket-school-mystery-languages}.
+Alternatively, you can run the following command from the terminal:
 @verbatim{
-raco pkg install https://github.com/justinpombrio/RacketSchool
+raco pkg install racket-school-mystery-languages
 }
 
 The three languages are called @tt{Records1}, @tt{Records2}, and
 @tt{Records3}. Once you have installed them, you can run them in
-DrRacket with @tt{#lang Records1}, etc. Here is the syntax for
-these languages:
+DrRacket with @tt{#lang Records1}, etc.
+For your convenience, @tt{#lang RecordsAll} will run
+programs in @italic{all three} languages.
+Here is the syntax for these languages:
 
 @;%
 @(begin
@@ -57,11 +60,7 @@ these languages:
   (b ::= true false)
   (n ::= number)
   (s ::= string)
-  (v ::=
-     b
-     n
-     s
-     (function x))
+  (v ::= b n s (function x))
   #:binding-forms
   (let ((x e_1)) e_2 #:refers-to x))
 
@@ -99,7 +98,9 @@ Your next task is to implement these languages. Begin with this
 @hyperlink["https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt"]{@tt{basic} Redex language},
 and extend it with the syntax above to
 handle records, with the behavior of @tt{Records1}.
-[TODO: activate this link]
+Instead of producing @tt{'stuck}, however, your language can just
+get stuck. For example, @tt{(prog (+ 1))} should evaluate to
+@tt{(prog (+ 1))}, rather than to @tt{'stuck}.
 
 Next, extend the @tt{basic} language to instead behave like @tt{Records2}.
 

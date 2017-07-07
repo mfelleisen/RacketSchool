@@ -18,7 +18,10 @@ task will be to find programs that tell them apart.
 
 This lab's mystery languages are called @tt{Variables1},
 @tt{Variables2}, and @tt{Variables3}. Run them with @tt{#lang
-Variables1}, etc. Here is the syntax for these languages:
+Variables1}, etc.
+For your convenience, @tt{#lang VariablesAll} will run
+programs in @italic{all three} languages.
+Here is the syntax for these languages:
 
 @;%
 @(begin
@@ -48,11 +51,7 @@ Variables1}, etc. Here is the syntax for these languages:
   (b ::= true false)
   (n ::= number)
   (s ::= string)
-  (v ::=
-     b
-     n
-     s
-     (function x))
+  (v ::= b n s (function x))
   #:binding-forms
   (let ((x e_1)) e_2 #:refers-to x))
 
