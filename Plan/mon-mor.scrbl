@@ -497,5 +497,5 @@ Time to get your hands dirty.
 @item{@racket[substitute]}
 @item{contexts}
 @item{@racket[reduction-relation]}
-@item{@racket[eval], via Racket's @racket[define] for now}
+@item{@racket[eval]}
 ]

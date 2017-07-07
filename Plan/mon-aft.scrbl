@@ -88,6 +88,8 @@ relations. We have seen one such function in action:
 terms to terms. It is a bit unusual, because it is also needs to be told
 (via @racket[default-language]) which language to deal with.
 
+@;{The current version of Monday morning's plan also uses `eval`.}
+
 Whenever Redex encounters the use of a meta-function in a @racket[term]
 context, it evaluates it automatically. It does not need any extra hints. 
 
@@ -98,8 +100,8 @@ name-giving example:
 #reader scribble/comment-reader
 (racketblock
 (--> (in-hole E-name (n_1 + n_2))
-        (in-hole E-name (plus n_1 n_2))
-        plus)
+     (in-hole E-name (plus n_1 n_2))
+     plus)
 ))
 @;%
 Remember that the right-hand side of a relation is a term position. When
@@ -168,7 +170,7 @@ A final example is @racket[eval]:
   [(eval e) ,(first (apply-reduction-relation* ->name (term e)))])
 ))
 @;%
-Ouch, we just escape to Racket. Let's reduce the use of Racket: 
+Ouch, we just escaped to Racket. Let's reduce the use of Racket: 
 @;%
 @(begin
 #reader scribble/comment-reader
@@ -246,7 +248,7 @@ For @racket[union], we cheat:
 ))
 @;%
 
-For @racket[minus], we should off a cool feature of Redex pattern matching: 
+For @racket[minus], we show off a cool feature of Redex pattern matching: 
 @;%
 @(begin
 #reader scribble/comment-reader

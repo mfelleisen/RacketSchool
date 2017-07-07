@@ -21,7 +21,7 @@ To install the mystery languages, in DrRacket ...
 [TODO: register languages at http://pkgs.racket-lang.org/]
 Alternatively, you can run the following command:
 @verbatim{
-raco pkg install https://github.com/justinpombrio/RacketSchool
+raco pkg install https://github.com/justinpombrio/RacketSchool.git
 }
 
 The three languages are called @tt{Records1}, @tt{Records2}, and
