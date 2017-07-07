@@ -204,10 +204,87 @@ We can even express this as a test:
 But let's not get carried away. 
 
 
+Let's build up an ML-style let-construct: 
+@itemlist[
+@item{@racket[(local ((x e)) e)] and @racket[(local ((x e) (x e)) e)] are
+ just @racket[let]} 
+@item{@racket[(local ((x1 e1) and (x2 e2)) e)] makes @racket[x1] and
+ @racket[x2] mutually recursive} 
+@item{@racket[(local ((x1 e1) in (x2 e2)) e)] scopes @racket[x1] for
+ @racket[e2]} 
+]
+
+We will do so one step at a time: 
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-syntax (local stx)
+  (syntax-parse stx
+    ((_ ((x1:id e1:expr)) e)
+     #'(let ([x1 e1]) e))
+    ((_ ((x1:id e1:expr) (x2:id e2:expr)) e)
+     #'(let ([x1 e1][x2 e2]) e))))
+))
+@;%
+
+Next we need @racket[#:literals] because we want to match @racket[and] and
+nothing else: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-syntax (local stx)
+  (syntax-parse stx #:literals (and)
+    ((_ ((x1:id e1:expr)) e)
+     #'(let ([x1 e1]) e))
+    ((_ ((x1:id e1:expr) (x2:id e2:expr)) e)
+     #'(let ([x1 e1][x2 e2]) e))
+    ((_ ((x1:id e1:expr) and (x2:id e2:expr)) e)
+     #'(letrec ([x1 e1][x2 e2]) e))))
+))
+@;%
+Here we reuse the binding of @racket[and] from Racket because
+@racket[#:literals] must use existing identifiers. 
+
+Now @racket[in] doesn't exist in Racket. So we make a definition: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-syntax (in stx)
+  (raise-syntax-error 'in "used out of context" stx))
+
+(define-syntax (local stx)
+  (syntax-parse stx #:literals (and in)
+    ((_ ((x1:id e1:expr)) e)
+     #'(let ([x1 e1]) e))
+    ((_ ((x1:id e1:expr) (x2:id e2:expr)) e)
+     #'(let ([x1 e1][x2 e2]) e))
+    ((_ ((x1:id e1:expr) and (x2:id e2:expr)) e)
+     #'(letrec ([x1 e1][x2 e2]) e))
+    ((_ ((x1:id e1:expr) in (x2:id e2:expr)) e)
+     #'(let* ([x1 e1][x2 e2]) e))))
+))
+@;%
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(local ((x 2) (y 2)) (* x y))
+
+(local ((x 2) in (y x)) (* x y))
+
+(local ((f (λ (x) (g x))) and (g (λ (y) (if (= y 1) 2 (f (- y 1)))))) (f 3))
+))
+@;%
+
+@bold{TODO}
+
 @itemlist[
 
-@item{multiple clauses}
 @item{recursion?} 
-@item{literals}
 
 ]
