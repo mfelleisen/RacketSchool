@@ -2,7 +2,7 @@
 
 (require redex)
 
-;; -----------------------------------------------------------------------------
+;; -------------------------------------------------------
 (define-language Lambda
   (e ::=
      x
@@ -16,7 +16,7 @@
 
 (default-language Lambda)
 
-;; -----------------------------------------------------------------------------
+;; -------------------------------------------------------
 (define-extended-language Lambda-calculus Lambda
   (E-name ::=
      hole
@@ -30,7 +30,7 @@
         (in-hole E-name (substitute e_1 x e_2))
         beta-name)))
 
-;; -----------------------------------------------------------------------------
+;; -------------------------------------------------------
 ;; evaluate term e with the transitive closure of ->name 
 (define (eval e)
   (first (apply-reduction-relation* ->name e)))

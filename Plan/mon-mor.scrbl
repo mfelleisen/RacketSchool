@@ -287,7 +287,7 @@ calculus:
    Lambda-calculus
    #:domain e
    (--> (in-hole C ((lambda (x) e_1) e_2))
-        (in-hole C (substitute e_2 x e_1))
+        (in-hole C (substitute e_1 x e_2))
         beta-name)))
 ))
 @;%

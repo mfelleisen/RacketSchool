@@ -9,7 +9,7 @@
 @item{revise the language for assignment statements}
 ]
 
-@section{Variable Assignment}
+@section{Syntax for Variable Assignment}
 
 @;%
 @(begin
@@ -32,8 +32,8 @@
      
   (e ::=
      
-     (set! x e)
-     (void)
+     (code:hilite(set! x e))
+     (code:hilite (void))
      
      x
      (lambda (x) e)
@@ -60,6 +60,8 @@
   @racket[(void)] is not necessary but it makes assignments act like those
   in Racket. 
 
+@section{Blocks Anybody?}
+
 For writing programs in this world, you'd also want blocks or local
 declarations. But we don't add those as syntax but as meta-functions: 
 @;%
@@ -70,7 +72,7 @@ declarations. But we don't add those as syntax but as meta-functions:
   let : ((x e)) e e -> e
   [(let ([x_lhs e_rhs]) e_1 e_2)
    ((lambda (x_lhs)
-      ((lambda (x_dummy) e_2) (0 + e_1)))
+      ((lambda (x_dummy) e_2) e_1))
     e_rhs)
    (where (x_dummy) ,(variables-not-in (term (e_1 e_2)) '(dummy)))])
 ))
@@ -109,6 +111,15 @@ Here are some sample programs:
 @;%
 How do they behave? 
 
+@; -----------------------------------------------------------------------------
+@section{Reduction Rules for Imperative PCF}
+
+Today we use the call-by-value PCF to add variable assignment---simply for
+variety not because there is anything inherently wrong about assignment
+statements and call-by-name. 
+
+From PCF with function definitions, we know we need evaluation contexts for
+both expressions and programs: 
 @;%
 @(begin
 #reader scribble/comment-reader
@@ -123,39 +134,47 @@ How do they behave?
           (v E-value)
           (E-value + e)
           (v + E-value)))
-
-(define ->value
-  (reduction-relation
-   PCF-eval
-   #:domain p
-   (--> (in-hole P-value ((lambda (x) e_1) v_2))
-        (in-hole P-value (substitute e_1 x v_2))
-        beta-value)
-   (--> (in-hole P-value (if tt e_1 e_2))
-        (in-hole P-value e_1)
-        if-tt)
-   (--> (in-hole P-value (if ff e_1 e_2))
-        (in-hole P-value e_2)
-        if-ff)
-   (--> (in-hole P-value (n_1 + n_2))
-        (in-hole P-value ,(+ (term n_1) (term n_2)))
-        plus)
-
-   (--> (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
-              (in-hole E-value x))
-        (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
-              (in-hole E-value v))
-        retrieve)
-
-   (--> (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
-              (in-hole E-value (set! x v_new)))
-        (prog ((defvar x_1 v_1) ... (defvar x v_new) (defvar x_2 v_2) ...)
-              (in-hole E-value v))
-        set)
-
-   (--> (prog ((defvar x v) ...) (in-hole E-value ((lambda (x_1) e) v_1)))
-        (prog ((defvar x v) ... (defvar x_1 v_1)) (in-hole E-value e))
-        (where (x_* ... x_1 x_& ...) (assignables e))
-        allocate)))
 ))
 @;%
+
+Looking up variable values works just like looking up functions: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(--> (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
+           (in-hole E-value x))
+     (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
+           (in-hole E-value v))
+     retrieve)
+))
+@;%
+
+And this tells us that modifying what a variable stands for works in a
+similar manner: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(--> (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
+           (in-hole E-value (set! x v_new)))
+     (prog ((defvar x_1 v_1) ... (defvar x v_new) (defvar x_2 v_2) ...)
+           (in-hole E-value v))
+     set)
+))
+@;%
+
+But to make it all work, we need one more rule: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(--> (prog ((defvar x v) ...) (in-hole E-value ((lambda (x_1) e) v_1)))
+     (prog ((defvar x v) ... (defvar x_1 v_1)) (in-hole E-value e))
+     (where (x_* ... x_1 x_& ...) (assignables e))
+     allocate)
+))
+@;%
+We call this allocate because in a language such as Racket @racket[lambda]
+allocates a slot in the store for assignable variable bindings. 
+

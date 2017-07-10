@@ -51,52 +51,53 @@
   let : ((x e)) e e -> e
   [(let ([x_lhs e_rhs]) e_1 e_2)
    ((lambda (x_lhs)
-      ((lambda (x_dummy) e_2) (0 + e_1)))
+      ((lambda (x_dummy) e_2) e_1))
     e_rhs)
    (where (x_dummy) ,(variables-not-in (term (e_1 e_2)) '(dummy)))])
 
 ;; -----------------------------------------------------------------------------
 (define-extended-language PCF-eval PCF
-  (P-name ::=
-          (prog (f ...) E-name))
-  (E-name ::=
+  (P-value ::=
+          (prog (f ...) E-value))
+  (E-value ::=
           hole
-          (set! x E-name)
-          (E-name e)
-          (E-name + e)
-          (v + E-name)))
+          (set! x E-value)
+          (E-value e)
+          (v E-value)
+          (E-value + e)
+          (v + E-value)))
 
-(define ->name
+(define ->value
   (reduction-relation
    PCF-eval
    #:domain p
-   (--> (in-hole P-name ((lambda (x) e_1) e_2))
-        (in-hole P-name (substitute e_1 x e_2))
-        beta-name)
-   (--> (in-hole P-name (if tt e_1 e_2))
-        (in-hole P-name e_1)
+   (--> (in-hole P-value ((lambda (x) e_1) v_2))
+        (in-hole P-value (substitute e_1 x v_2))
+        beta-value)
+   (--> (in-hole P-value (if tt e_1 e_2))
+        (in-hole P-value e_1)
         if-tt)
-   (--> (in-hole P-name (if ff e_1 e_2))
-        (in-hole P-name e_2)
+   (--> (in-hole P-value (if ff e_1 e_2))
+        (in-hole P-value e_2)
         if-ff)
-   (--> (in-hole P-name (n_1 + n_2))
-        (in-hole P-name ,(+ (term n_1) (term n_2)))
+   (--> (in-hole P-value (n_1 + n_2))
+        (in-hole P-value ,(+ (term n_1) (term n_2)))
         plus)
 
    (--> (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
-              (in-hole E-name x))
+              (in-hole E-value x))
         (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
-              (in-hole E-name v))
+              (in-hole E-value v))
         retrieve)
 
    (--> (prog ((defvar x_1 v_1) ... (defvar x v) (defvar x_2 v_2) ...)
-              (in-hole E-name (set! x v_new)))
+              (in-hole E-value (set! x v_new)))
         (prog ((defvar x_1 v_1) ... (defvar x v_new) (defvar x_2 v_2) ...)
-              (in-hole E-name v))
+              (in-hole E-value v))
         set)
 
-   (--> (prog ((defvar x v) ...) (in-hole E-name ((lambda (x_1) e) v_1)))
-        (prog ((defvar x v) ... (defvar x_1 v_1)) (in-hole E-name e))
+   (--> (prog ((defvar x v) ...) (in-hole E-value ((lambda (x_1) e) v_1)))
+        (prog ((defvar x v) ... (defvar x_1 v_1)) (in-hole E-value e))
         (where (x_* ... x_1 x_& ...) (assignables e))
         allocate)))
 
@@ -125,17 +126,18 @@
 ;; evaluate term e with the transitive closure of ->name 
 (define-metafunction PCF-eval
   eval : p ->  v or error 
-  [(eval p) v (where ((prog (f ...) v)) ,(apply-reduction-relation* ->name (term p)))]
+  [(eval p) v (where ((prog (f ...) v)) ,(apply-reduction-relation* ->value (term p)))]
   [(eval p)
+   
+   ,(apply-reduction-relation* ->value (term p))
    #;
-   ,(apply-reduction-relation* ->name (term p))
    error])
 
 (define e3
   (term
    (prog ()
          ((lambda (x) (lambda (y) x))
-          ((lambda (x) x) z)))))
+          ((lambda (x) x) 2)))))
 
 (define e4
   (term
@@ -145,10 +147,10 @@
           (2 + 2)))))
 
 (term (eval ,e3))
-(traces ->name e3)
+(traces ->value e3)
 
 (term (eval ,e4))
-(traces ->name e4)
+(traces ->value e4)
 
 (define e5
   (term 
@@ -169,7 +171,7 @@
            f))))
 
 (term (eval ,e6))
-(traces ->name e6)
+(traces ->value e6)
          
 
 ;; Let's diagnose the bug in this language model 
