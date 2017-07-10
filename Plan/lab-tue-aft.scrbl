@@ -18,8 +18,8 @@ task will be to find programs that tell them apart.
 
 This lab's mystery languages are called @tt{Functions1},
 @tt{Functions2}, and @tt{Functions3}. Run them with @tt{#lang
-Functions1}, etc.
-For your convenience, @tt{#lang FunctionsAll} will run
+RacketSchool/Functions1}, etc.
+For your convenience, @tt{#lang RacketSchool/FunctionsAll} will run
 programs in @italic{all three} languages.
 Here is the syntax for these languages (it is simply
 the syntax of the @tt{basic} language; there are no syntactic

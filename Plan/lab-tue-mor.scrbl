@@ -27,8 +27,8 @@ raco pkg install racket-school-mystery-languages
 
 The three languages are called @tt{Records1}, @tt{Records2}, and
 @tt{Records3}. Once you have installed them, you can run them in
-DrRacket with @tt{#lang Records1}, etc.
-For your convenience, @tt{#lang RecordsAll} will run
+DrRacket with @tt{#lang RacketSchool/Records1}, etc.
+For your convenience, @tt{#lang RacketSchool/RecordsAll} will run
 programs in @italic{all three} languages.
 Here is the syntax for these languages:
 
