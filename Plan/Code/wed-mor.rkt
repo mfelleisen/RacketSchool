@@ -45,7 +45,7 @@
 
 (default-language PCF)
 
-; (let ((x_1 x_2) ...) e_1 e_2) binds the current value of x_2 to x_1,
+; (let ((x_1 x_2)) e_1 e_2) binds the current value of x_2 to x_1,
 ; evaluates e_1, throws away its value, and finally evaluates e_2 
 (define-metafunction PCF
   let : ((x e)) e e -> e

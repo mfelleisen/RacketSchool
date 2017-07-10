@@ -38,7 +38,7 @@ PCF. Here is a simple way of extending the syntax:
 
      ;; arithmetic
      n
-     (e + e))
+     (+ e e))
   (n ::=
      integer)
 
@@ -63,19 +63,23 @@ Your revised model gets stuck because expressions now have free
 variables. These free variables point to function definitions and show up
 in the hole of an E context. 
 
-Now we have two options. Option 1 is to use the lookup function from
-yesterday's lab. 
+Now we have two options:
+@itemlist[#:style 'ordered 
 
-Option 2 is to exploit Redex's extremely powerful pattern matching. This is
-what we do: 
+@item{Use the lookup function from yesterday's lab.}
+
+@item{Exploit Redex's extremely powerful pattern matching.}
+]
+
+We use option 2: 
 @;%
 @(begin
 #reader scribble/comment-reader
 (racketblock
 (--> (prog ((define x_1 v_1) ... (define x v) (define x_2 v_2) ...)
-              (in-hole E-name x))
+           (in-hole E-name x))
      (prog ((define x_1 v_1) ... (define x v) (define x_2 v_2) ...)
-              (in-hole E-name v)))
+           (in-hole E-name v)))
 ))
 @;%
 
