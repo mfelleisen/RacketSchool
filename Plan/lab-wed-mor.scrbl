@@ -2,6 +2,12 @@
 
 @(require "shared.rkt")
 
+@(define basics 
+  "https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt")
+
+@(define basics+
+  "https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-variables.rkt")
+
 @; ---------------------------------------------------------------------------------------------------
 @title[#:tag "lab-wed-mor"]{@bold{Lab} The Mystery Languages of Variables}
 
@@ -84,24 +90,28 @@ treat variables and function calls, so focus on that when trying to tell them ap
 @; -----------------------------------------------------------------------------
 @exercise["ex:implement-variables"]{
 
-Your next task is to implement these languages. Begin with this
-@hyperlink["https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt"]{@tt{basic} Redex language},
-and extend it with the syntax above to
-handle variables, with the behavior of @tt{Variables1}.
+Your task is to develop Redex models for these languages. 
 
-Next, extend the @tt{basic} language to instead behave like @tt{Variables2}.
+Begin with this @hyperlink[basics]{@tt{basic} Redex language}. @emph{Extend} it 
+with the syntax to handle variables. Then add reduction rules to realize
+the behavior of @tt{Variables1}. 
+
+Next, @emph{extend} the @tt{basic} language again to realize the behavior
+of @tt{Variables2}. 
 
 Finally, if you have time, try @tt{Variables3}.}
 
 @; -----------------------------------------------------------------------------
 @exercise["ex:mystery-semantics-variables"]{
 
-@bold{SPOILER: Do not click on link} until you have finished the above
-two exercises.
+Now we will flip the process. Instead of asking you to analyze a language
+by writing programs, we would like you to study a model and predict
+differences to existing languages. 
 
-Now we'll do the opposite.
-@hyperlink["https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-variables.rkt"]{Here}
-is a Redex semantics
-that extends the @tt{basic} language. @italic{Without running any
-programs}, how does it differ from @tt{Variables1}? What programs
-@italic{would} you run to exhibit the differences?}
+@centerline{@bold{SPOILER ALERT: Do not click on link until you have
+finished the above two exercises.}}
+
+@hyperlink[basics+]{Here} is a Redex semantics that extends the @tt{basic}
+language. @italic{Without running any programs}, how does it differ from
+@tt{Variables1}? What programs @italic{would} you run to exhibit the
+differences?}

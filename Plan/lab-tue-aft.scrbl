@@ -1,6 +1,11 @@
 #lang scribble/manual
 
 @(require "shared.rkt")
+@(define basics 
+  "https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt")
+
+@(define basics+ 
+  "https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-functions.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
 @title[#:tag "lab-tue-aft"]{@bold{Lab} The Mystery Languages of Functions}
@@ -79,26 +84,29 @@ treat function calls, so focus on that when trying to tell them apart.}
 @; -----------------------------------------------------------------------------
 @exercise["ex:implement-functions"]{
 
-Your next task is to implement these languages. Begin as before with the
-@hyperlink["https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt"]{@tt{basic} Redex language},
-and modify it as necessary to have the behavior of @tt{Functions1}.
+Your task is to develop Redex models for these languages. 
 
-Next, modify the @tt{basic} language to instead behave like @tt{Functions2}.
+Begin as before with the @hyperlink[basics]{@tt{basic} Redex language}. 
+@emph{Modify} it as necessary to model the behavior of @tt{Functions1}.
 
-Finally, if you have time, try @tt{Functions3}. For this language
-variant, you may want to add new syntax to the language that isn't
-part of the surface syntax, but instead only to help represent
-intermediate steps of evaluation. Feel free to do so.}
+Next, @emph{modify} the @tt{basic} language to instead behave like @tt{Functions2}.
+
+Finally, if you have time, try @tt{Functions3}.  @bold{Hint} For this last
+variant, you must extend the existing syntax so you can express the
+run-time states. Like evaluation contexts, for example, this extra syntax
+isn't part of the surface syntax.}
 
 @; -----------------------------------------------------------------------------
 @exercise["ex:mystery-semantics-functions"]{
 
-@bold{SPOILER: Do not click on link} until you have finished the above
-two exercises.
+Now we will flip the process. Instead of asking you to analyze a language
+by writing programs, we would like you to study a model and predict
+differences to existing languages. 
 
-Now we'll do the opposite.
-@hyperlink["https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-functions.rkt"]{Here}
-is a Redex semantics
-that extends the @tt{basic} language. @italic{Without running any
-programs}, how does it differ from @tt{Functions1}? What programs
-@italic{would} you run to exhibit the differences?}
+@centerline{@bold{SPOILER ALERT: Do not click on link until you have
+finished the above two exercises.}}
+
+@hyperlink[basics+]{Here} is a Redex semantics that extends the @tt{basic}
+language. @italic{Without running any programs}, how does it differ from
+@tt{Functions1}? What programs @italic{would} you run to exhibit the
+differences?}

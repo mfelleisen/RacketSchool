@@ -1,7 +1,7 @@
 #lang scribble/manual
 
 @(require "shared.rkt")
-@(define redex-eval (let ([e (make-base-eval)]) (e '(require redex)) e))
+@;(define redex-eval (let ([e (make-base-eval)]) (e '(require redex)) e))
 
 @; ---------------------------------------------------------------------------------------------------
 @title[#:tag "mon-aft"]{Modeling Functional Expression Languages}
@@ -22,7 +22,8 @@ Let's step back and look at language modeling slowly.
 After you have a syntax, use the grammar to generate instances and check
 them (typos do sneak in). Instances are generated with @racket[term]: 
 @;
-@interaction[#:eval redex-eval
+@;interaction[#:eval redex-eval
+@racketblock[
 (define e1 (term y))
 (define e2 (term (lambda (y) y)))
 (define e3 (term (lambda (x) y)))
