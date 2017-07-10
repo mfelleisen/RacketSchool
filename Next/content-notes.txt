@@ -18,4 +18,6 @@ Instead of starting off with a language with terms like (lam (x) e), use a langu
 
 Why start with the conventional LC presentation? Why not start with an actual directed reduction relation — a programming language; then motivate the value of an equational theory (sometimes we might want to go in the opposite order from "reduction", e.g., in an IDE or compiler); and from there work out to an equational theory?
 
+I would like to institute a "no big words" rule (which I use in my classes). When people throw around terms, (a) they don't always know what they're talking about, and (b) they make those who don't know these terms wonder if they're in the wrong place (esp. on Mon AM). I would put "by name" (and hence "by-*") in this category. We're going to define the world, and later we can relate it to the rest of the world, but take these things on their own terms for now.
+
 ======================================================================
