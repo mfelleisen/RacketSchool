@@ -3,6 +3,12 @@
 @(require "shared.rkt")
 @(require (for-label redex))
 
+@(define basics 
+  "https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt")
+
+@(define basics-plus 
+  "https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-records.rkt")
+
 @; ---------------------------------------------------------------------------------------------------
 @title[#:tag "lab-tue-mor"]{@bold{Lab} The Mystery Languages of Records}
 
@@ -86,35 +92,36 @@ produces the number 1 in all of the languages.
 @; -----------------------------------------------------------------------------
 @exercise["ex:analyze-records"]{
 
-Explore the differences between @tt{Records1}, @tt{Records2},
-and @tt{Records3}. Explain their behaviors, and find programs that
-support your explanation. These mystery languages differ in how they
-treat records, so focus on that when trying to tell them apart.}
+Explore the differences between @tt{Records1}, @tt{Records2}, and
+@tt{Records3}. Explain their behaviors, and find programs that support your
+explanation. These mystery languages differ in how they treat records, so
+focus on that when trying to tell them apart.}
 
 @; -----------------------------------------------------------------------------
 @exercise["ex:implement-records"]{
 
-Your next task is to implement these languages. Begin with this
-@hyperlink["https://raw.githubusercontent.com/justinpombrio/RacketSchool/master/public/basic.rkt"]{@tt{basic} Redex language},
-and extend it with the syntax above to
-handle records, with the behavior of @tt{Records1}.
-Instead of producing @tt{'stuck}, however, your language can just
-get stuck. For example, @tt{(prog (+ 1))} should evaluate to
+Your task is to develop Redex models for these languages. 
+
+Begin with this @hyperlink[basics]{@tt{basic} Redex language}, and
+@emph{extend} it with the syntax above to handle records, with the behavior
+of @tt{Records1}.  Instead of producing @tt{'stuck}, however, your language
+can just get stuck. For example, @tt{(prog (+ 1))} should evaluate to
 @tt{(prog (+ 1))}, rather than to @tt{'stuck}.
 
-Next, extend the @tt{basic} language to instead behave like @tt{Records2}.
+Next, extend the @tt{basic} language again to instead behave like @tt{Records2}.
 
-Finally, if you have time, try @tt{Records3}.}
+Finally, if you have time, try to model @tt{Records3}.}
 
 @; -----------------------------------------------------------------------------
 @exercise["ex:mystery-semantics-records"]{
 
-@bold{SPOILER: Do not click on link} until you have finished the above
-two exercises.
+Now we will flip the process. Instead of asking you to analyze a language
+by writing programs, we would like you to study a model and predict
+differences to existing languages. 
 
-Now we'll do the opposite.
-@hyperlink["https://raw.githubusercontent.com/mfelleisen/RacketSchool/master/Exercises/mystery-semantics-records.rkt"]{Here}
-are two Redex semantics
-that extends the @tt{basic} language. @italic{Without running any
-programs}, how do they differ from @tt{Records1}? What programs
-@italic{would} you run to exhibit the differences?}
+@centerline{@bold{SPOILER ALERT: Do not click on link until you have finished the above two exercises.}}
+
+@hyperlink[basics-plus]{Here} are two Redex semantics that extends the
+@tt{basic} language. @italic{Without running any programs}, how do they
+differ from @tt{Records1}? What programs @italic{would} you run to exhibit
+the differences?}
