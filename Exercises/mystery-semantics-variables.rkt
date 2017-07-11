@@ -11,3 +11,13 @@
         (prog f ... (defvar x v)
               (in-hole E e))
         e-let2)))
+
+;; For reference: here is the let rule used by Variables1
+(define var->
+  (extend-reduction-relation basic-> var-lang
+   (--> (prog f ...
+              (in-hole E (let ((x v)) e)))
+        (prog f ... (defvar x_fresh v)
+              (in-hole E (substitute e x x_fresh)))
+        (fresh x_fresh)
+        e-let)))

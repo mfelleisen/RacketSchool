@@ -45,3 +45,13 @@
         (prog f_1 ... (%defun (in-hole E_2 continue) (x_fun x_param) e_body) f_2 ...
               (in-hole E_1 v))
         e-return-2)))
+
+;; For reference: here is the standard application rule used by Functions1
+(define basic->
+  (reduction-relation basic-lang
+   ;; apply
+   (--> (prog f_1 ... (defun (x_fun x_param) e_body) f_2 ...
+              (in-hole E ((function x_fun) v_arg)))
+        (prog f_1 ... (defun (x_fun x_param) e_body) f_2 ...
+              (in-hole E (substitute e_body x_param v_arg)))
+        e-apply)))
