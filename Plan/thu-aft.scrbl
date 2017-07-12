@@ -395,6 +395,9 @@ The details are beyond the scope (pun intended) of this summer school,
 but see @hyperlink["http://www.cs.utah.edu/~mflatt/scope-sets/"]{these
 notes} if you're interested.
 
+@;{
+SKIPPED
+
 @; ----------------------------------------
 @section{Phases}
 
@@ -444,6 +447,10 @@ racket/base
 
 (lambda (x) 10)
 ]
+}
+
+@;{
+SKIPPED
 
 @; ----------------------------------------
 @section{Context-Sensitive Expansion}
@@ -455,3 +462,29 @@ context-insensitive (modulo bindings for literals). To perform
 context-sensitive transformations, a macro can use
 @racket[syntax-local-value] to inspect its environment, and it can use
 @racket[local-expand] to force the expression of a subform.
+}
+
+@; ----------------------------------------
+@section{Interactive Evaluation}
+
+When you run a program in DrRacket, you get to interact with the
+program after it runs. The interactive prompt is sometimes called the
+@defterm{top level}, because you have access to all the bindings that
+are at the outer scope of your module, while nested bindings are
+inaccessible. Interactive evaluation is similar to adding additional
+definitions and expression to the end of your program---but it's not
+exactly the same, because interactive evaluation cannot generally
+reflect the same constraints and behaviors of in-module forms; in that
+sense, the top level is hopeless.
+
+Since making interactive evaluation sensible with respect to a
+module's content depends on the module's language, a
+@racket[#%top-interaction] form is implicitly used for each
+interaction. A replacement @racket[#%top-interaction] might disallow
+definitions, or it might combine an expression's processing with
+information (such as types) that is recorded from the module body.
+
+@; ----------------------------------------
+@section{@hash-lang[] and Parsing}
+
+....
