@@ -108,6 +108,9 @@ We use option 2:
            (in-hole E-name v)))
 ))
 @;%
+The complete reduction relation is available in @figure-ref{defun};
+@figure-ref{defun-testing} shows how to revise the @tt{eval} function plus
+its test suite. 
 
 @; -----------------------------------------------------------------------------
 @section{Exercises}
@@ -119,3 +122,83 @@ function. No, you won't get very far with the recursion we have.}
 
 @exercise["ex:value"]{Revise your call-by-value model of PCF to include
 global definitions.}
+
+@figure["defun" @list{The complete reduction relation for @tt{defun}}]{
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock0
+(define ->name
+  (reduction-relation
+   PCF-eval
+   #:domain p
+   (--> (in-hole P-name ((lambda (x) e_1) e_2))
+        (in-hole P-name (substitute e_1 x e_2))
+        beta-name)
+   (--> (in-hole P-name (if tt e_1 e_2))
+        (in-hole P-name e_1)
+        if-tt)
+   (--> (in-hole P-name (if ff e_1 e_2))
+        (in-hole P-name e_2)
+        if-ff)
+   (--> (in-hole P-name (n_1 + n_2))
+        (in-hole P-name ,(+ (term n_1) (term n_2)))
+        plus)
+   (--> (prog (d ... (defun (x x_y) e) d_2 ...)
+              (in-hole E-name x))
+        (prog (d ... (defun (x x_y) e) d_2 ...)
+              (in-hole E-name (lambda (x_y) e))))))
+))
+@;%
+}
+
+@figure["defun-testing" @list{The @tt{eval} function for PCF plus @tt{defun}}]{
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock0
+;; evaluate term e with the transitive closure of ->name
+(define-metafunction PCF-eval
+  eval : p -> v or (shu any)
+  [(eval p)
+   v_one-term 
+   (where ((prog (d ...) v_one-term))
+          ,(apply-reduction-relation* ->name (term p)))]
+  [(eval p)
+   (shu
+    ,(apply-reduction-relation* ->name (term p)))])
+
+(define e3
+  (term
+   (prog ()
+         ((lambda (x) (lambda (y) x))
+          ((lambda (x) x) 2)))))
+
+(define e4
+  (term
+   (prog ()
+         (((lambda (x) (lambda (y) x))
+           (1 + (1 + 1)))
+          (2 + 2)))))
+
+(define e5
+  (term
+   (prog ((defun (h why) (why + 1)))
+         42)))
+
+(define e6
+  (term
+   (prog ((defun (h why) (why + 1)))
+         ((h 31) + 2))))
+          
+(test-equal (term (eval ,e6))
+            34)
+(test-equal (term (eval ,e5))
+            42)
+(test-equal (term (eval ,e3))
+            (term (lambda (y) ((lambda (x) x) 2))))
+(test-equal (term (eval ,e4))
+            3)
+))
+@;%
+}

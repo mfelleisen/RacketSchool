@@ -2,39 +2,29 @@
 
 (require redex)
 
-;; -----------------------------------------------------------------------------
+;; -------------------------------------------------------
+
 (define-language PCF
   (p ::= 
-     (prog (f ...) e))
+     (prog (d ...) e))
 
-  (f ::=
-     (defvar x v))
-
+  (d ::= (defvar x v))
   
   (v ::=
-     (void)
      n
      tt
      ff
+     n
      (lambda (x) e))
-     
+
   (e ::=
-     
-     (set! x e)
-     (void)
-     
+     v  ;; <--- values 
      x
-     (lambda (x) e)
      (e e)
-
-     ;; booleans
-     tt
-     ff
      (if e e e)
+     (e + e)
+     (set! x e))
 
-     ;; arithmetic
-     n
-     (e + e))
   (n ::=
      integer)
 
@@ -51,21 +41,22 @@
   let : ((x e)) e e -> e
   [(let ([x_lhs e_rhs]) e_1 e_2)
    ((lambda (x_lhs)
-      ((lambda (x_dummy) e_2) e_1))
+      ((lambda (x_d) e_2) e_1))
     e_rhs)
-   (where (x_dummy) ,(variables-not-in (term (e_1 e_2)) '(dummy)))])
+   (where (x_d) ,(variables-not-in (term (e_1 e_2)) '(dummy)))])
 
-;; -----------------------------------------------------------------------------
+;; -------------------------------------------------------
 (define-extended-language PCF-eval PCF
   (P-value ::=
-          (prog (f ...) E-value))
+           (prog (d ...) E-value))
   (E-value ::=
-          hole
-          (set! x E-value)
-          (E-value e)
-          (v E-value)
-          (E-value + e)
-          (v + E-value)))
+           (set! x E-value)
+           hole
+           (set! x E-value)
+           (E-value e)
+           (v E-value)
+           (E-value + e)
+           (v + E-value)))
 
 (define ->value
   (reduction-relation
@@ -106,7 +97,6 @@
   assignables : e -> (x ...)
   [(assignables x) ()]
   [(assignables (set! x e)) (x x_1 ...) (where (x_1 ...) (assignables e))]
-  [(assignables (void)) ()]
   [(assignables (lambda (x) e)) (assignables e)]
   [(assignables (e_1 e_2)) (x_1 ... x_2 ...)
                            (where (x_1 ...) (assignables e_1))
@@ -122,16 +112,16 @@
                              (where (x_1 ...) (assignables e_1))
                              (where (x_2 ...) (assignables e_2))])
   
-;; -----------------------------------------------------------------------------
+;; -------------------------------------------------------
 ;; evaluate term e with the transitive closure of ->name 
 (define-metafunction PCF-eval
-  eval : p ->  v or error 
-  [(eval p) v (where ((prog (f ...) v)) ,(apply-reduction-relation* ->value (term p)))]
+  eval : p ->  v or (err any)
   [(eval p)
-   
-   ,(apply-reduction-relation* ->value (term p))
-   #;
-   error])
+   v
+   (where ((prog (d ...) v))
+          ,(apply-reduction-relation* ->value (term p)))]
+  [(eval p)
+   (err ,(apply-reduction-relation* ->value (term p)))])
 
 (define e3
   (term
@@ -146,12 +136,6 @@
            (1 + (1 + 1)))
           (2 + 2)))))
 
-(term (eval ,e3))
-(traces ->value e3)
-
-(term (eval ,e4))
-(traces ->value e4)
-
 (define e5
   (term 
    (prog ((defvar f (lambda (x) (if x g h)))
@@ -159,7 +143,9 @@
           (defvar h (lambda (y) 21)))
          ((f tt) 5))))
 
-(term (eval ,e5))
+(test-equal (term (eval ,e3)) (term (lambda (y) 2)))
+(test-equal (term (eval ,e4)) 3)
+(test-equal (term (eval ,e5)) 42)
 
 (define e6
   (term 
@@ -170,8 +156,4 @@
            (set! f x)
            f))))
 
-(term (eval ,e6))
-(traces ->value e6)
-         
-
-;; Let's diagnose the bug in this language model 
+(test-equal (term (eval ,e6)) 99)

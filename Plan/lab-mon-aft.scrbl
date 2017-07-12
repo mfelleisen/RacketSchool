@@ -100,4 +100,68 @@ Third, start by formulating examples/tests.
 
 Fourth, this exercise is hard if you did not go through an introduction to
 systematic function design (and even then it might be hard). Give it a try,
-but don't get frustrated if you don't finish it today. }
+but don't get frustrated if you don't finish it today. 
+
+See @figure-ref{sd} for the solution when you're done.}
+
+
+@figure["sd" @list{The static distance function}]{
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock0
+;; compute static distance version of Lambda terms 
+
+(define-language Lambda
+  (e ::=
+     x
+     (lambda (x) e)
+     (e e))
+  (x ::= variable-not-otherwise-mentioned)
+  #:binding-forms
+  (lambda (x) e #:refers-to x))
+
+(define-extended-language SD Lambda
+  (e ::=
+     ....
+     (sd n))
+  (n ::=
+     natural))
+
+(default-language SD)
+
+;; the desired function (dispatched to the function that can do the work)
+(define-metafunction SD
+  sd* : e -> e
+  [(sd* e) (sd*-accu e ())])
+
+;; (x ...) the binding variables on path from root
+;; in reverse order
+(define-metafunction SD
+  sd*-accu : e (x ...) -> e
+  [(sd*-accu x (x_1 ... x x_2 ...))
+   (sd ,(length (term (x_1 ...))))]
+  [(sd*-accu x any) x]
+  [(sd*-accu (lambda (x) e) (x_1 ...))
+   (lambda (x) (sd*-accu e (x x_1 ...)))]
+  [(sd*-accu (e_1 e_2) (x ...))
+   ((sd*-accu e_1 (x ...)) (sd*-accu e_2 (x ...)))])
+
+;; tests 
+(test-equal (term (sd* c))
+            (term c))
+(test-equal (term (sd* (lambda (y) y)))
+            (term (lambda (y) (sd 0))))
+(test-equal (term (sd* (lambda (y) (lambda (x) (x y)))))
+            (term (lambda (y) (lambda (x) ((sd 0) (sd 1))))))
+(test-equal (term (sd* (lambda (y) (lambda (x) z))))
+            (term (lambda (y) (lambda (x) z))))
+(test-equal (term (sd* (lambda (y) (y (lambda (x) (x y))))))
+            (term
+             (lambda (y)
+               ((sd 0) (lambda (x) ((sd 0) (sd 1)))))))
+(test-equal (term (sd* (lambda (x) (lambda (x) x))))
+            (term (lambda (x) (lambda (x) (sd 0)))))
+))
+@;%
+}

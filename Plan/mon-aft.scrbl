@@ -292,3 +292,4 @@ And we want tests for our reduction relations:
 The first succeeds using @racket[alpha-equivalent?] implicitly; the second
 fails (as expected). The @racket[test-->>] form tests the transitive closure
 of the relation. 
+
