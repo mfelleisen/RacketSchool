@@ -386,7 +386,7 @@ Let's use evaluation contexts instead of plain contexts:
 @(begin
 #reader scribble/comment-reader
 (racketblock
-(define-extended-language Lambda-calculus PCF
+(define-extended-language Lambda-calculus Lambda 
   (E-name ::=
      hole
      (E-name e)))

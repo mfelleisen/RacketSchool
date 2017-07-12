@@ -53,9 +53,8 @@ Before you get started, make sure you can create examples of
 #reader scribble/comment-reader
 (racketblock
 (term 
-  (let ((x (lambda (a b c) a))
-        (y (lambda (x) x)))
-    (x y y y)))
+  (let ((x (lambda (a) (lambda (b) a))))
+    ((x y) y)))
 ))
 @;%
  Like Racket's @racket[let], the function elaborates surface syntax into
@@ -65,9 +64,8 @@ Before you get started, make sure you can create examples of
 #reader scribble/comment-reader
 (racketblock
 (term 
-  ((lambda (x y) (x y y y))
-   (lambda (a b c) a)
-   (lambda (x) x)))
+  ((lambda (x) ((x y) y))
+   (lambda (a) (lambda (b) a))))
 ))
 @;%
 
@@ -78,10 +76,11 @@ Before you get started, make sure you can create examples of
 #reader scribble/comment-reader
 (racketblock
 (term 
- (fv 
-  (let ((x (lambda (a b c) a))
-        (y (lambda (x) x)))
-    (x y y y))))
+ (substitute 
+  (let ((x (lambda (a) (lambda (b a)))))
+    ((x y) y))
+  y 
+  (lambda (x) x)))
 ))
 @;%
  produces the expected result. What is that? Formulate a test case.}
@@ -91,7 +90,7 @@ Before you get started, make sure you can create examples of
 First, extend Lambda with the form @racket[(sd n)] where @racket[n] stands
 for naturals. 
 
-Second, define the meta-function @racket[sd]. It consumes a term in plain
+Second, define the meta-function @racket[sd*]. It consumes a term in plain
 Lambda and delivers one in the extended language where all bound variable
 references are replaced with @racket[(sd n)] where @racket[n] counts the
 number of @racket[lambda]s between the bound occurrence of the variable and

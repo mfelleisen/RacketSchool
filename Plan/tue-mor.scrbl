@@ -59,9 +59,35 @@ syntactic features.
 @; -----------------------------------------------------------------------------
 @section{Context-sensitive Rules} 
 
+Your revised model gets stuck because the tree root of any program now have
+@tt{prog} as its marker. We need a new kind of context. 
+
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-extended-language PCF-eval PCF
+  (P-name ::=
+          (prog (f ...) E-name))
+
+  (E-name ::=
+          hole
+          (E-name e)
+          (E-name + e)
+	  (if E-name e e)
+          (v + E-name))
+
+  (v ::=
+     n
+     tt
+     ff
+     (lambda (x) e)))
+))
+@;%
+
 Your revised model gets stuck because expressions now have free
 variables. These free variables point to function definitions and show up
-in the hole of an E context. 
+in the hole of an E context.
 
 Now we have two options:
 @itemlist[#:style 'ordered 

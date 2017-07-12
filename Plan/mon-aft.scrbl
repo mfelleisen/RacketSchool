@@ -197,8 +197,9 @@ Here is how we do the first step:
 (define-metafunction Lambda-calculus
   eval-2 : e -> v or (unbound-variables (x ...))
   [(eval-2 e)
+   v_one-term 
    (where () (fv e))
-   (where (one-term) ,(apply-reduction-relation* ->name (term e)))]
+   (where (v_one-term) ,(apply-reduction-relation* ->name (term e)))]
   [(eval-2 e)
    (unbound-variables (fv e))])
 ))
