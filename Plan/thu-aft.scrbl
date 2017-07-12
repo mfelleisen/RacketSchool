@@ -2,8 +2,6 @@
 
 @(require "shared.rkt")
 
-@(define try-it @bold{Try it:})
-
 @; ---------------------------------------------------------------------------------------------------
 @title[#:tag "thu-aft"]{* Building Languages} 
 
@@ -92,13 +90,13 @@ are special as keywords that cannot be redefined. Instead, seemingly
 core parts of the language, including @racket[lambda], can be defined
 as macros.
 
-@try-it What happens if you add @racket[(define (f x) 11)]
-and @racket[(f 10)] to the program?
+@exercise["ex:define-still-lambda"]{What happens if you add
+@racket[(define (f x) 11)] and @racket[(f 10)] to the program?}
 
-@try-it Racket's @racket[define] forms can appear in @racket[(let ()
-....)] to make the definition local to the @racket[let] form. Given
-that fact, define @racket[lambda] without referring to the built-in
-@racket[lambda] form.
+@exercise["ex:lambda-via-define"]{Racket's @racket[define] forms can
+appear in @racket[(let () ....)] to make the definition local to the
+@racket[let] form. Given that fact, define @racket[lambda] without
+referring to the built-in @racket[lambda] form.}
 
 @; ----------------------------------------
 @section{Macros and Identifiers}
@@ -181,10 +179,10 @@ racket
           e)]))
 ]
 
-@try-it Adjust @racket["noisy-lambda.rkt"] to make @racket[define]
-create noisy functions, too, when it's used in function-shorthand mode
---- like @racket[(define (f x) 11)], as opposed to @racket[(define x
-8)] or @racket[(define f (lambda (x) 11))].
+@exercise["ex:noisy-define"]{Adjust @racket["noisy-lambda.rkt"] to
+make @racket[define] create noisy functions, too, when it's used in
+function-shorthand mode---like @racket[(define (f x) 11)], as opposed
+to @racket[(define x 8)] or @racket[(define f (lambda (x) 11))].}
 
 @; ----------------------------------------
 @section[#:tag "whole"]{Controlling the Whole Language}
@@ -268,14 +266,14 @@ s-exp "noisy-racket.rkt"
 (f 2)
 ]
 
-@try-it To avoid the possibility of divide-by-zero errors, adjust
-@racket["noisy-racket.rkt"] to not export @racket[/], @racket[modulo],
-or @racket[remainder].
+@exercise["ex:no-divide"]{To avoid the possibility of divide-by-zero
+errors, adjust @racket["noisy-racket.rkt"] to not export @racket[/],
+@racket[modulo], or @racket[remainder].}
 
-@try-it To allow division without the possibility of divide-by-zero
-errors, adjust @racket["noisy-racket.rkt"] export variants of
-@racket[/], @racket[modulo], or @racket[remainder] that return
-@racket[+inf.0] when the second argument is @racket[0].
+@exercise["ex:dbz-to-inf"]{To allow division without the possibility
+of divide-by-zero errors, adjust @racket["noisy-racket.rkt"] export
+variants of @racket[/], @racket[modulo], or @racket[remainder] that
+return @racket[+inf.0] when the second argument is @racket[0].}
 
 @; ----------------------------------------
 @section{Implicit Syntactic Forms}
@@ -325,11 +323,11 @@ exporting everything from @racketmodname[racket] except
 @racket[#%module-begin], @racket[#%app], and @racket[#%datum], all of
 which are used implicitly in @racket["program.rkt"].
 
-@try-it Racket's @racket[#%app] implements left-to-right evaluation of
-function-call arguments. Change @racket["noise-racket.rkt"] so that it
-implements right-to-left evaluation of arguments to a function call.
-You'll need to use Racket's @racket[#%app] to implement your new
-@racket[#%app].
+@exercise["ex:right-to-left"]{Racket's @racket[#%app] implements
+left-to-right evaluation of function-call arguments. Change
+@racket["noise-racket.rkt"] so that it implements right-to-left
+evaluation of arguments to a function call. You'll need to use
+Racket's @racket[#%app] to implement your new @racket[#%app].}
 
 @; ----------------------------------------
 @section{Macro-Definition Shorthands}
@@ -509,9 +507,10 @@ racket
   '("So, you want to evaluate..." e "?"))
 ]
 
-@try-it Make a language module (to be used after @racket[@#,hash-lang[] s-exp])
-that is like @racketmodname[racket] but adjusts @racket[#%top-interaction]
-to wrap @racket[time] around each form to show how long it takes to evaluate.
+@exercise["ex:time-lang"]{Make a language module (to be used after
+@racket[@#,hash-lang[] s-exp]) that is like @racketmodname[racket] but
+adjusts @racket[#%top-interaction] to wrap @racket[time] around each
+form to show how long it takes to evaluate.}
 
 @; ----------------------------------------
 @section{@hash-lang[] and Installed Languages}
@@ -615,7 +614,7 @@ use the built-in @racket[read-syntax] and just configure it to read
 decimal numbers as exact rationals instead of inexact floating-point
 numbers:
 
-#racketblock[
+@racketblock[
 (module reader syntax/module-reader
   noisy
   #:read-syntax my-read-syntax
