@@ -634,3 +634,11 @@ s-exp noisy
 ]
 
 will show an exact result instead of a floating-point approximation.
+
+@exercise["ex:REM"]{Some users of @racket[@#,hash-lang[] noisy] may
+miss DOS-style comments using @tt{REM}. Adjust the reader so that it
+detects and discards an @tt{REM} result, discarding the rest of the
+line as well, and then tries reading again. Use @racket[syntax?] to
+detect a non-EOF result from @racket[read-syntax], and use
+@racket[read-line] to consume (the rest of) a line from an input
+stream.}
