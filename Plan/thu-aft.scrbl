@@ -366,7 +366,7 @@ The @racket[define-syntax-rule] form doesn't include any such
 specification. And yet...
 
 @racketmod[
-#lang racket
+racket
 
 (define-syntax-rule (noisy-begin e ... last-e)
   (begin
