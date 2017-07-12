@@ -1,4 +1,6 @@
-#!/bin/tcsh 
+#!/bin/tcsh -e
+
+raco make summer-school.scrbl
 
 scribble --htmls ++xref-in setup/xref load-collections-xref \
 #          --redirect-main "http://pre.plt-scheme.org/docs/html/" \
