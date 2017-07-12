@@ -181,11 +181,16 @@ racket
           e)]))
 ]
 
+@try-it Adjust @racket["noisy-lambda.rkt"] to make @racket[define]
+create noisy functions, too, when it's used in function-shorthand mode
+--- like @racket[(define (f x) 11)], as opposed to @racket[(define x
+8)] or @racket[(define f (lambda (x) 11))].
+
 @; ----------------------------------------
-@section{Controlling the Whole Language}
+@section[#:tag "whole"]{Controlling the Whole Language}
 
 Although @racket["noisy-lambda.rkt"] provides a @racket[lambda] to
-shadow the one initially provided by the @racket[racket] language, we
+shadow the one initially provided by the @racketmodname[racket] language, we
 rely on a client program to @racket[require] it within a @code{#lang
 racket} without renaming the new @racket[lambda] to something else and
 without requiring any other modules that provide a variant of
@@ -262,6 +267,15 @@ s-exp "noisy-racket.rkt"
 (define f (lambda (x) 10))
 (f 2)
 ]
+
+@try-it To avoid the possibility of divide-by-zero errors, adjust
+@racket["noisy-racket.rkt"] to not export @racket[/], @racket[modulo],
+or @racket[remainder].
+
+@try-it To allow division without the possibility of divide-by-zero
+errors, adjust @racket["noisy-racket.rkt"] export variants of
+@racket[/], @racket[modulo], or @racket[remainder] that return
+@racket[+inf.0] when the second argument is @racket[0].
 
 @; ----------------------------------------
 @section{Implicit Syntactic Forms}
@@ -355,11 +369,11 @@ Finally, you may see @racket[syntax-case], which is almost the same as
 @racket[syntax-parse], but it has the pattern-language restrictions of
 @racket[define-syntax-rule] and @racket[syntax-rules]. There's little
 reason to use @racket[syntax-case] over @racket[syntax-parse], other
-than the minor convenience of having it included in @racket[racket]
+than the minor convenience of having it included in @racketmodname[racket]
 (again, for historical reasons).
 
 @; ----------------------------------------
-@section{Scope and Macro Expansion}
+@section{Aside: Scope and Macro Expansion}
 
 In Redex, @racket[define-language] lets you specify binding structure.
 The @racket[define-syntax-rule] form doesn't include any such
@@ -388,8 +402,8 @@ above expands to @racket[let], and the expander knows the binding
 structure of @racket[let], so it can effectively infer a binding rule
 for @racket[example]. But you know that the
 @racket[define-syntax-rule] form is just a shorthand for a
-compile-time functions, which can do arbitrary things... halting
-problem... so this inference is not as straightforward as, say, type
+compile-time functions, which can do arbitrary things... mumble mumble halting
+problem mumble... so this inference is not as straightforward as, say, type
 inference. In fact, the inference works dynamically (at compile time).
 The details are beyond the scope (pun intended) of this summer school,
 but see @hyperlink["http://www.cs.utah.edu/~mflatt/scope-sets/"]{these
@@ -399,7 +413,7 @@ notes} if you're interested.
 SKIPPED
 
 @; ----------------------------------------
-@section{Phases}
+@section{Aside: Phases}
 
 When you write Racket libraries, you shouldn't use
 @racket[@#,hash-lang[] racket], because @racketmodname[racket] pulls
@@ -427,12 +441,12 @@ The error is
 @centerline{@racketerror{syntax: unbound identifier in the transformer environment;
  also, no #%app syntax transformer is bound}}
 
-Although @racket[racket/base] provides @racket[syntax] (as abbreviated
+Although @racketmodname[racket/base] provides @racket[syntax] (as abbreviated
 with @litchar{#'}) and @racket[#%app] (as implicitly used for in
 function calls), it only provides then to @emph{run-time} expressions
 in the module body. The @racket[syntax-parse] form is explicitly
 imported for compile-time positions by @racket[(require (for-syntax
-syntax/parse))]. You can similarly import @racket[racket/base] for use
+syntax/parse))]. You can similarly import @racketmodname[racket/base] for use
 at compile time:
 
 @racketmod[
@@ -474,8 +488,8 @@ are at the outer scope of your module, while nested bindings are
 inaccessible. Interactive evaluation is similar to adding additional
 definitions and expression to the end of your program---but it's not
 exactly the same, because interactive evaluation cannot generally
-reflect the same constraints and behaviors of in-module forms; in that
-sense, the top level is hopeless.
+reflect the same constraints and behaviors of in-module forms; the top
+level is hopeless.
 
 Since making interactive evaluation sensible with respect to a
 module's content depends on the module's language, a
@@ -484,7 +498,140 @@ interaction. A replacement @racket[#%top-interaction] might disallow
 definitions, or it might combine an expression's processing with
 information (such as types) that is recorded from the module body.
 
+The @racket[#%top-interaction] form is unusual in that it's paired
+with its argument form using @litchar{.}, as opposed to putting
+@racket[#%top-interaction] and its argument form in a syntactic list:
+
+@racketmod[
+racket
+
+(define-syntax-rule (#%top-interaction . e)
+  '("So, you want to evaluate..." e "?"))
+]
+
+@try-it Make a language module (to be used after @racket[@#,hash-lang[] s-exp])
+that is like @racketmodname[racket] but adjusts @racket[#%top-interaction]
+to wrap @racket[time] around each form to show how long it takes to evaluate.
+
+@; ----------------------------------------
+@section{@hash-lang[] and Installed Languages}
+
+We mentioned in @secref["whole"] that the language named after
+@hash-lang[] must have two properties: it must take responsibility for
+parsing the rest of the characters in the module, and it must be
+accessible by a name that doesn't involve quote marks.
+
+To make the module accessible without quote marks, then it needs to
+reside in a directory that is registered with Racket as a
+@defterm{collection}. More specifically, we normally register the
+directory as a @defterm{package}, and the default treatment of a
+package (unless the package says otherwise) is to use its directory as
+a collection.
+
+@margin-note{You can also use a command line by @exec{cd}ing to the
+parent of the @filepath{noisy} directory and running
+@commandline{raco pkg install noisy/} Don't omit the final @litchar{/},
+which makes it a directory reference instead of a request to consult
+the package server.}
+
+Create a directory named @filepath{noisy} somewhere on your
+filesystem. (Make the name @filepath{noisy} so that it matches our
+examples.) Then choose @onscreen{Package Manager...} from DrRacket's
+@onscreen{File} menu, click @onscreen{Browse...} near the top left of
+the resulting window, answer @onscreen{Directory}, and pick your
+@filepath{noisy} directory. Finally, click @onscreen{Install}.
+
+Now, create a @filepath{main.rkt} file in your @filepath{noisy}. (The
+name @filepath{main.rkt} is special.) Put the content of
+@filepath{noisy-racket.rkt} in @filepath{main.rkt}.
+
+It still won't work if you now try
+
+@racketmod[
+@#,racket[noisy]
+]
+
+because we've only addressed one of the problems---accessing the
+module by a name without quotes. We're now ready to supply the parsing
+half. Change your @filepath{main.rkt} file to add the nested
+module
+
+@racketblock[
+(module reader syntax/module-reader
+  noisy)
+]
+
+This declaration creates a @racket[reader] @defterm{submodule} in the
+@filepath{main.rkt} module, and @racket[@#,hash-lang[] noisy] looks
+for a submodule by that name in the @filepath{main.rkt} module of the
+@filepath{noisy} collection.
+
+This @racket[reader] submodule is implemented using the
+language @racketmodname[syntax/module-reader], which is a language
+specifically for making module parsers. The @racket[#%module-begin]
+form of the @racketmodname[syntax/module-reader] module looks for a
+single identifier to be injected as the language of the parsed module;
+in this case, we use @racket[noisy] to refer back to the
+@filepath{main.rkt} module of the @filepath{noisy} collection, which
+is back to the enclosing module.
+
+Since the @racketmodname[syntax/module-reader] language implements a
+default reader that is the same as the @racketmodname[s-exp] parser,
+then
+
+@racketmod[
+@#,racket[noisy]
+(+ 2 3)
+]
+
+will run and print 5. It happens that
+
+@racketmod[
+s-exp noisy
+(+ 2 3)
+]
+
+would run and print the same way, just using the parser via
+@racketmodname[s-exp] instead of the @racket[reader] submodule.
+
 @; ----------------------------------------
 @section{@hash-lang[] and Parsing}
 
-....
+If the point of creating and installing @filepath{noisy/main.rkt} is
+that we can use the short reference @racket[@#,hash-lang[] noisy],
+then we're done. If the point is to change parsing, then we need to
+override the default parser provided by @racketmodname[syntax/module-reader].
+
+A parser comes in two flavors: @racket[read-syntax] and @racket[read].
+The @racket[read] flavor is essentially legacy, but a @racket[parser]
+submodule must provide it, anyway, even if just by using
+@racket[read-syntax] and stripping away ``syntax'' information to get
+a ``datum.'' The @racket[read] flavor takes an input stream, while the
+@racket[read-syntax] flavor takes a source-file description (usually
+a path) plus an input stream.
+
+Instead of writing a parser from scratch, which can be tedious, lets
+use the built-in @racket[read-syntax] and just configure it to read
+decimal numbers as exact rationals instead of inexact floating-point
+numbers:
+
+#racketblock[
+(module reader syntax/module-reader
+  noisy
+  #:read-syntax my-read-syntax
+  #:read (lambda (in)
+           (syntax->datum (my-read-syntax #f in)))
+  
+  (define (my-read-syntax src in)
+    (parameterize ([read-decimal-as-inexact #f])
+      (read-syntax src in))))
+]
+
+With that change, then
+
+@racketmod[
+s-exp noisy
+(+ 2 3.1)
+]
+
+will show an exact result instead of a floating-point approximation.
