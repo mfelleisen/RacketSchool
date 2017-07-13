@@ -8,7 +8,7 @@
 @goals[
  @item{@racket[define-syntax]}
  @item{@racket[syntax-parse]}
- @item{@racket[define-syntax-class]}
+@; @item{@racket[define-syntax-class]}
 ]
 
 @section{Functions on Syntax}
@@ -281,10 +281,108 @@ Now @racket[in] doesn't exist in Racket. So we make a definition:
 ))
 @;%
 
-@bold{TODO}
+Let's develop the equivalent of @racket[and] without using @racket[and],
+i.e., @racket[conjunction]. A simple version of @racket[conjunction] deals
+with two expressions: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(conjunction #true #false)
+))
+@;%
+or 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(conjunction #true #true)
+))
+@;%
+Only the second expression evaluates to true. At first glance, you may wish
+to define @racket[conjunction] as a function that performs the usual
+Boolean operation but take a look at this: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(conjunction #false (smt-solver problem-with-one-gzillion-variables))
+))
+@;%
+We know that, even if this large-ish looking expression produces
+@racket[#true], the overall expression must return @racket[#false]. Our
+implementation should short-cut the evaluation. We can do this with a
+compile-time function in a call-by-value language. 
 
-@itemlist[
+So here we go: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-syntax (conjunction stx)
+  (syntax-parse stx
+    [(_ lhs:expr rhs:expr) #'(if lhs rhs #false)]))
+))
+@;%
+Alternatively, 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-syntax (conjunction stx)
+  (syntax-parse stx
+    [(_ lhs:expr rhs:expr) #'(and-function lhs (lambda () rhs))]))
 
-@item{recursion?} 
+(define (and-function arg1 suspended-arg2)
+  (if arg1 (suspended-arg2) #false))
+))
+@;%
 
-]
+Let's see how @racket[conjunction] could cope with multiple expressions: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(define-syntax (conjunction stx)
+  (syntax-parse stx
+    [(_ lhs:expr rhs:expr) #'(if lhs rhs #false)]
+    [(_ lhs:expr rhs:expr rhs2:expr ...) #'(if lhs (and rhs rhs2 ...) #false)]))
+))
+@;%
+
+
+@exercise["mac-or"]{Develop the compile-time function @racket[disjunction2]
+(without using @racket[or]). The function deals with binary disjunctions of
+the shape 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(disjunction2 lhs:expr rhs:expr)
+))
+@;%
+After testing, run the expression @racket[(disjunction2 (displayln 1) (displayln 2))].
+
+@centerline{@bold{Stop}---before anyone continues, let's discuss}
+
+Now generalize the function to @racket[disjunction], which deals with at
+least two but possibly an arbitrary number of expressions.}
+
+@exercise["mac-let*"]{Develop the compile-time function @racket[block]
+(without using @racket[let*]). The function implements syntax of the shape 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(block ((x1:id rhs1:expr) (x2:id rhs2:expr) ... (x3:id rhs3:expr)) body:expr)
+))
+@;%
+The identifier @racket[x1] is visible in @racket[rhs2], but not vice
+versa, and so on. All @racket[x1] thru @racket[x3] are visible in
+@racket[body]. 
+
+The evaluation initializes @racket[x1] to @racket[rhs1], @racket[x2] to
+@racket[rhs2], and so on. Once all identifiers are initialized,
+@racket[body] is evaluated.}
+
+
