@@ -3,7 +3,8 @@
 (provide
   goals  ;; bulletize goals 
   ntt    ;; nested tt 
-  common ;; where are the common definitions? 
+  common ;; where are the common definitions?
+  resource ;; pull along a file/directory
   (for-label (all-from-out redex))
   (for-label (all-from-out racket))
   (all-from-out
@@ -21,6 +22,7 @@
   scribble/manual
   scribble/core
   scribble/eval
+  scribble/html-properties
   racket/sandbox
   scriblib/figure)
 
@@ -53,3 +55,7 @@ to the top of your file:
 @;%
  }
 )
+
+(define (resource path label)
+  (elem #:style (style #f (list (link-resource path)))
+        label))

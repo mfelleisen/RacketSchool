@@ -659,3 +659,8 @@ line as well, and then tries reading again. Use @racket[syntax?] to
 detect a non-EOF result from @racket[read-syntax], and use
 @racket[read-line] to consume (the rest of) a line from an input
 stream.}
+
+@; ----------------------------------------
+@section{Extended Example}
+
+See @resource["ql"]{QL}.
