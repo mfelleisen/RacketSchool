@@ -1,5 +1,7 @@
 #!/bin/tcsh 
 
+zip -r ql.zip ql/*.rkt ql/*.ql
+
 scribble --htmls ++xref-in setup/xref load-collections-xref \
           --redirect-main "http://docs.plt-scheme.org/" \
           --dest /Users/matthias/0Unison/0Web/ \

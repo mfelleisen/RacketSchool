@@ -663,4 +663,4 @@ stream.}
 @; ----------------------------------------
 @section{Extended Example}
 
-See @resource["ql"]{QL}.
+See @resource["ql.zip"]{QL}.
