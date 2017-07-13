@@ -77,18 +77,18 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
 @list[ @t{ }         @secref{lab-fri-mor} 		@t{@italic{consult with staff}}]
 ]]}
 
-@include-section{mon-mor.scrbl} @include-section{lab-mon-mor.scrbl}
-@include-section{mon-aft.scrbl} @include-section{lab-mon-aft.scrbl}
+@include-section{pre-mon-mor.scrbl} @include-section{lab-mon-mor.scrbl}
+@include-section{pre-mon-aft.scrbl} @include-section{lab-mon-aft.scrbl}
 
-@include-section{tue-mor.scrbl} @include-section{lab-tue-mor.scrbl}
-@include-section{tue-aft.scrbl} @include-section{lab-tue-aft.scrbl}
+@include-section{pre-tue-mor.scrbl} @include-section{lab-tue-mor.scrbl}
+@include-section{pre-tue-aft.scrbl} @include-section{lab-tue-aft.scrbl}
 
-@include-section{wed-mor.scrbl} @include-section{lab-wed-mor.scrbl}
+@include-section{pre-wed-mor.scrbl} @include-section{lab-wed-mor.scrbl}
 
-@include-section{wed-aft.scrbl} @; --- 
+@include-section{pre-wed-aft.scrbl} @; --- 
 
-@include-section{thu-mor.scrbl} @include-section{lab-thu-mor.scrbl}
-@include-section{thu-aft.scrbl} @include-section{lab-thu-aft.scrbl}
+@include-section{pre-thu-mor.scrbl} @include-section{lab-thu-mor.scrbl}
+@include-section{pre-thu-aft.scrbl} @include-section{lab-thu-aft.scrbl}
 
-@include-section{fri-mor.scrbl} @include-section{lab-fri-mor.scrbl}
-@include-section{fri-aft.scrbl} @; --- 
+@include-section{pre-fri-mor.scrbl} @include-section{lab-fri-mor.scrbl}
+@include-section{pre-fri-aft.scrbl} @; --- 
