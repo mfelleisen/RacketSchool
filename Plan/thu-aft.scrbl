@@ -20,14 +20,14 @@ you can use comple-time functions to define a whole new language
 within Racket. So, what's the relationship between Redex models and
 compile-time functions?
 
-Redex and compile-time functions reflect the two main, different ways
-to implement a language. A Redex model gives you an
+Redex and compile-time functions reflect the two main, different ways to
+implement a language in the realm of Racket. A Redex model gives you an
 @deftech{interpreter}---a function that maps programs to results.
-Using a compile-time function defines a @deftech{compiler}---a
-function that maps programs to other programs---and relies on the
-existing Racket interpreter to run the compiled program
-@margin-note*{The Racket interpreter itself composes a
-compiler to machine code with interpretation of that machine code.}
+Compile-time functions can define a @deftech{compiler}---a function that
+maps programs to other programs; to run the resulting program, you will
+rely on the existing Racket "interpreter".  @margin-note*{The Racket
+interpreter itself composes a compiler to machine code with interpretation
+of that machine code.}
 
 Whether an interepreter or a compiler is better depends on your goal.
 You may well want both; you want to take a model as an interpreter and
@@ -79,7 +79,7 @@ racket
 
 (define-syntax (lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(cons 'x e)]))
 
 (lambda (x) 10)
@@ -119,7 +119,7 @@ racket
 
 (define-syntax (lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(original-lambda (x)
          (printf "arg: ~s\n" x)
           e)]))
@@ -145,7 +145,7 @@ racket
 
 (define-syntax (lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(original-lambda (x)
          (printf "arg: ~s\n" x)
           e)]))
@@ -173,11 +173,25 @@ racket
 
 (define-syntax (new-lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(lambda (x)
          (printf "arg: ~s\n" x)
           e)]))
 ]
+
+@exercise["ex:more-lambda"]{Add a match clause (or several) to the
+@racket[new-lambda] comppile-time function so that @racket[lambda] shapes
+(trees) other than  
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(lambda (x:id) e:expr)
+))
+@;%
+behave as before. @bold{Note} If you know more than basic Racket but not
+the whole language, just get some shapes to work---not all of
+@racket[lambda].}
 
 @exercise["ex:noisy-define"]{Adjust @racket["noisy-lambda.rkt"] to
 make @racket[define] create noisy functions, too, when it's used in
@@ -251,7 +265,7 @@ racket
 
 (define-syntax (new-lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(lambda (x)
          (printf "arg: ~s\n" x)
           e)]))
@@ -283,7 +297,7 @@ be composed in a natural way, since each has its own trigger. Still,
 Racket has several forms where you don't use a name. For example,
 @racket[5] by itself normally treated as a literal number, instead of
 requiring the programmer to write @racket[(@#,racket[quote] 5)].
-Similarly, assuming that @racket[+] has a variable binding, @racket[(f
+Similarly, assuming that @racket[f] has a variable binding, @racket[(f
 1 2)] is a function call without something before the @racket[f] to
 say ``this is a function call.'' In many of these places, you might
 want to extend or customize a language, even though there's no
@@ -336,7 +350,7 @@ The pattern
 
 @racketblock[
 (define-syntax (_macro-id stx)
-  (syntax-parse stx ()
+  (syntax-parse stx 
    [(_ _pattern ....) #'_template]))
 ]
 
@@ -346,7 +360,8 @@ with a shorthand like @racket[define-syntax-rule], which lets you
 write the above form equivalently as
 
 @racketblock[
-(define-syntax-rule (_macro-id _pattern ....)
+(define-syntax-rule
+  (_macro-id _pattern ....)
   _template)
 ]
 
@@ -380,7 +395,8 @@ specification. And yet...
 @racketmod[
 racket
 
-(define-syntax-rule (noisy-begin e ... last-e)
+(define-syntax-rule 
+  (noisy-begin e ... last-e)
   (begin
    (printf "~s\n" e)
    ...
@@ -428,7 +444,7 @@ racket/base
 
 (define-syntax (lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(cons 'x e)]))
 
 (lambda (x) 10)
@@ -454,7 +470,7 @@ racket/base
 
 (define-syntax (lambda stx)
   (syntax-parse stx
-    [(_ (x:id) e)
+    [(_ (x:id) e:expr)
      #'(cons 'x e)]))
 
 (lambda (x) 10)
@@ -503,7 +519,8 @@ with its argument form using @litchar{.}, as opposed to putting
 @racketmod[
 racket
 
-(define-syntax-rule (#%top-interaction . e)
+(define-syntax-rule 
+  (#%top-interaction . e)
   '("So, you want to evaluate..." e "?"))
 ]
 
