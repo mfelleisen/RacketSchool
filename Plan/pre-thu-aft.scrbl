@@ -180,7 +180,7 @@ racket
 ]
 
 @exercise["ex:more-lambda"]{Add a match clause (or several) to the
-@racket[new-lambda] comppile-time function so that @racket[lambda] shapes
+@racket[new-lambda] macro so that @racket[lambda] shapes
 (trees) other than  
 @;%
 @(begin
@@ -368,6 +368,8 @@ write the above form equivalently as
 For historical reasons, the allowed @racket[_pattern] forms are
 restricted in that they cannot include identifiers that have
 @litchar{:} followed by a syntax-class name, as in @racket[x:id].
+Also, the error messages are worse, so @racket[define-syntax-rule]
+is normally used only for temporary or internal extensions.
 
 There's also an intermediate point, which avoids writing an explicit
 @racket[lambda] but allows multiple patterns:
