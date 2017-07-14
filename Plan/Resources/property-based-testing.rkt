@@ -7,10 +7,7 @@
      n
      (not e)
      (and e e)
-     (or e e)
-     (xor e e)
-     (concat e ...)
-     (+ e e))
+     (concat e ...))
   (n ::= (b ...))
   (b ::= 0 1))
 
@@ -70,30 +67,8 @@
    whoops!])
 
 (define (bit? x) (or (equal? x 0) (equal? x 1)))
-
-(module+ test
-  (check-equal? (racket-eval (term ())) 0)
-  (check-equal? (racket-eval (term (1))) 1)
-  (check-equal? (racket-eval (term (1 0))) 2)
-  (check-equal? (racket-eval (term (1 1))) 3)
-  (check-equal? (racket-eval (term (1 0 0))) 4)
-  (check-equal? (racket-eval (term (1 0 1))) 5)
-  (check-equal? (racket-eval (term (1 1 0))) 6)
-  (check-equal? (racket-eval (term (+ (1 1 0) (1 0)))) 8)
-  (check-equal? (racket-eval (term (or (1 1 0 0) (0 1 0 1))))
-                (term (to-natural (1 1 0 1))))
-  (check-equal? (racket-eval (term (and (1 1 0 0) (0 1 0 1))))
-                (term (to-natural (0 1 0 0))))
-  (check-equal? (racket-eval (term (not (1 0 1 0)))) 5)
-  (check-equal? (racket-eval (term (concat (1 0 1 0) (1 1 0 0))))
-                (term (to-natural (1 0 1 0 1 1 0 0))))
-
-  (redex-check
-   L natural
-   (= (term (to-natural (from-natural natural)))
-      (term natural)))
   
-  (redex-check
-   L e
-   (equal? (term (redex-eval e))
-           (racket-eval (term e)))))
+(redex-check
+ L e
+ (equal? (term (redex-eval e))
+         (racket-eval (term e))))
