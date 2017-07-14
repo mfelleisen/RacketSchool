@@ -8,5 +8,5 @@ scribble --htmls ++xref-in setup/xref load-collections-xref \
           summer-school.scrbl 
 
 echo 'done'
-cp Resources/*pdf ../../../0Unison/0Web/summer-school/
+cp Resources/* ../../../0Unison/0Web/summer-school/
 open ../../../0Unison/0Web/summer-school/index.html

@@ -666,3 +666,36 @@ stream.}
 @section{Extended Example}
 
 See @resource["ql.zip"]{QL}.
+
+@; -----------------------------------------------------------------------------
+@section{Resources}
+
+@(define beautiful "http://beautifulracket.com/")
+
+If you want to construct languages, take a look at Matthew Butterick's book
+on building @link[beautiful]{Beautiful Racket}.
+
+@(define debug "https://github.com/AlexKnauth/debug")
+
+Matthew Butterick and Alex Knauth constructed a "meta-language"---like
+s-exp and at-exp---for @link[debug]{debugging}. 
+
+@(define lwc   "lwc-languages-the-racket-way.pdf")
+@(define linde "icfp-2017-lindemayer.pdf")
+@(define video "icfp-2017-video.pdf")
+
+If you would like to read some paper on constructing DSLs, consider 
+@itemlist[
+
+@item{@link[lwc]{Dan Feltey et al.} describe how to re-create a mini version of Java,
+including an IDE in the Racket world}
+
+@item{@link[linde]{Vincent St-Amour et al.} invent and implement a language
+for describing Lindemayer fractals, a paper with lots of amazing pictures,
+some code, and even less text}
+
+@item{@link[video]{Leif Andersen et al.} illustrate the language-oriented
+programming idea with a small, yet reasonably complex example involving
+eight embedded DSLs}
+]
+
