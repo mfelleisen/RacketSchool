@@ -89,7 +89,9 @@ The metafunctions---yes, an interpreter may use metafunctions---are listed
 in @figure-ref{robby-fig}.
 
 Your @bold{task} is to finish the model of the implementation and ensure
-that the two agree on as many tests as possible.}
+that the two agree on as many tests as possible. Let @racket[redex-check]
+be your guide; fix bugs as it discovers them to get a sense of how
+property-based testing works.}
 
 @figure["robby-fig" @list{Auxiliary functions and interpreter tests}]{
 @;%
