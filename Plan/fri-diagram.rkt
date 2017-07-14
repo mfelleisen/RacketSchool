@@ -2,6 +2,8 @@
 
 (provide impl-vs-spec)
 
+(provide impl-vs-spec)
+
 (require slideshow)
 
 ;; String -> Pict 
@@ -57,5 +59,3 @@
                             #:end-pull .2)])
          
     (scale s x)))
-
-(impl-vs-spec .5)

@@ -1,6 +1,7 @@
 #lang scribble/manual
 
 @(require "shared.rkt")
+@(require "fri-diagram.rkt")
 
 @; -----------------------------------------------------------------------------
 @title[#:tag "fri-mor"]{Specification vs Implementation} 
@@ -12,32 +13,20 @@
 
 @section{Setting up a test bed}
 
-@(require "fri-diagram.rkt")
+The goal of this morning's session is to develop a Racket compiler
+extension for the @tt{Records1} language. The syntax is available from
+@secref{lab-tue-mor}; the semantics of the various features is "obvious"
+and specified in Justin P.'s model. The key is that record field retrieval
+must use a string literal. 
 
-@figure["fig:testing" @list{Comparing specifications and implementations}]{
-  @impl-vs-spec[.6]}
+Name the @tt{#lang} you develop @tt{RecImpl}. 
 
-@;%
-@(begin
-#reader scribble/comment-reader
-(racketblock
-(define-namespace-anchor my-ns-anchor)
+Use Matthew F.'s notes from @secref{thu-aft} as a guide to develop the
+plug-in in an iterative fashion. 
 
-(define (run-in-mylang module-str binding)
- (parameterize ([read-accept-lang #t]
-                [read-accept-reader #t]
-                [current-namespace (namespace-anchor->namespace
-                                    my-ns-anchor)])
-   (eval
-    (call-with-input-string
-    module-str
-    (λ (p) (read-syntax 'zz p))))
-   (dynamic-require ''anonymous-module 'f)))
+When you have gotten far enough, I will release a revised version of this
+web page so we can discuss and implement @figure-ref{model-vs-impl}. 
 
-(run-in-mylang "#lang racket
-(provide (all-defined-out))
-(define f 13)" 'f)
-))
-@;%
-
-
+@figure["model-vs-impl" @list{Comparing models and implementations}]{
+ @centerline{@impl-vs-spec[.6]}
+}
