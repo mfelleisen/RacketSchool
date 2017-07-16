@@ -37,9 +37,12 @@ and copy and paste it into your drracket.
   (b ::= 0 1))
 ))
 @;%
-It is roughly the language of words of bits and ordinary operations. The
+It is roughly the language of binary numbers, but with some operations
+ that treat them as arrays of booleans and operate elementwise
+ (a conventional pun in machine architectures and low-level languages). The
   somewhat unusual @racket[concat] operation flattens out the given series
-  of words. 
+  of numbers into a single number (try it out on, say
+  @racket[(concat (1 0 1) () (1 1 0) (1 0))]).
 
 Here is a reduction model of the language: 
 @;%
