@@ -2,6 +2,7 @@
 
 @(require "shared.rkt")
 @(require "fri-diagram.rkt")
+@(define compare "compare.rkt")
 
 @; -----------------------------------------------------------------------------
 @title[#:tag "fri-mor"]{Specification vs Implementation} 
@@ -13,20 +14,70 @@
 
 @section{Setting up a test bed}
 
-The goal of this morning's session is to develop a Racket compiler
-extension for the @tt{Records1} language. The syntax is available from
-@secref{lab-tue-mor}; the semantics of the various features is "obvious"
-and specified in Justin P.'s model. The key is that record field retrieval
-must use a string literal. 
-
-Name the @tt{#lang} you develop @tt{RecImpl}. 
-
-Use Matthew F.'s notes from @secref{thu-aft} as a guide to develop the
-plug-in in an iterative fashion. 
-
-When you have gotten far enough, I will release a revised version of this
-web page so we can discuss and implement @figure-ref{model-vs-impl}. 
+Now that you have gotten far enough, let's discuss and implement
+@figure-ref{model-vs-impl}.
 
 @figure["model-vs-impl" @list{Comparing models and implementations}]{
  @centerline{@impl-vs-spec[.6]}
 }
+
+The @link[compare]{comparison module} exports a single function: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(provide
+ ;; Any -> Void
+ ;; evaluate sample-program in the Redex specification and the Records 
+ ;; program and compare results
+ ;; EFFECT if the program is a syntax erorr or the two results differ, 
+ ;; print reasonng to STDIO 
+
+ ;; WARNING this version does not support time-outs, exceptions, sandboxing, 
+ ;; and other protections. A production validation framework would need all that. 
+
+ compare-languages-on)
+))
+@;%
+As the comments say, @racket[compare-languages-on] makes it convenient to
+compare two versions of the same language: its model (blueprint) and its
+realization (implementation). 
+
+Using this function, we can set up a bunch of comparisons like this: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(compare-languages-on '(prog (++ "a" "n")))
+
+(compare-languages-on
+ '(prog (defun (f x) (record ("a" x)))
+        (|@| (f 1) "a")))
+
+(compare-languages-on
+ '(prog (defun (f x)
+          (let ((r (record ("aa" 00) ("c" x))))
+            r))
+
+        (defun (g r)
+          (if (zero? (|@| r "aa"))
+              (|@| r "c")
+              (|@| r "aa")))
+
+        (defun (h some-f)
+          (some-f 1))
+
+        (g (h f))))
+
+(compare-languages-on '(prog (+ 1 "a")))
+
+; (compare-languages-on '(prog (function f)))
+
+(compare-languages-on '(prog (defun (f x) x) f))
+
+(compare-languages-on
+ '(prog +))
+))
+@;%
+Of course, in the end we want many more comparisons than five, and how to
+ set this up is the topic of the concluding lecture in the afternoon. 

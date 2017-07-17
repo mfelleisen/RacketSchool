@@ -37,12 +37,11 @@ and copy and paste it into your drracket.
   (b ::= 0 1))
 ))
 @;%
-It is roughly the language of binary numbers, but with some operations
+ It is roughly the language of binary numbers plus some operations
  that treat them as arrays of booleans and operate elementwise
  (a conventional pun in machine architectures and low-level languages). The
-  somewhat unusual @racket[concat] operation flattens out the given series
-  of numbers into a single number (try it out on, say
-  @racket[(concat (1 0 1) () (1 1 0) (1 0))]).
+ somewhat unusual @racket[concat] operation flattens out the given series
+ of numbers into a single number.
 
 Here is a reduction model of the language: 
 @;%
@@ -90,6 +89,15 @@ By contrast, we finished the implementation:
 @;%
 The metafunctions---yes, an interpreter may use metafunctions---are listed
 in @figure-ref{robby-fig}.
+
+With this interpreter, you could investigate the meaning of @tt{concat}: 
+@;%
+@(begin
+#reader scribble/comment-reader
+(racketblock
+(concat (1 0 1) () (1 1 0) (1 0))
+))
+@;%
 
 Your @bold{task} is to finish the model of the implementation and ensure
 that the two agree on as many tests as possible. Let @racket[redex-check]

@@ -18,7 +18,7 @@ and Justin Pombrio}
 This summer school introduces attendees to the Racket philosophy of
  analyzing, modeling, and building languages. 
 
-The table below presents a concise summer school schedule. Most sessions
+The table below presents a concise summer school schedule. @emph{Most} sessions
  will consist of a lecture part and a hands-on lab. Our goal is to lecture
  for less than 90 minutes and to give you at least 120 minutes of lab
  time. The lectures will introduce basic ideas; the labs will present
@@ -73,8 +73,8 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
 
 @blank[]
 @; -------------------------------------------------------------------------------------
-@list[ @t{Friday}    @secref{fri-mor}			@secref{fri-aft}]
-@list[ @t{ }         @secref{lab-fri-mor} 		@t{@italic{consult with staff}}]
+@list[ @t{Friday}    @secref{lab-fri-mor}		@secref{fri-aft}]
+@list[ @t{ }         @secref{fri-mor} 			@t{@italic{consult with staff}}]
 ]]}
 
 @include-section{pre-mon-mor.scrbl} @include-section{lab-mon-mor.scrbl}
@@ -90,5 +90,5 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
 @include-section{pre-thu-mor.scrbl} @include-section{lab-thu-mor.scrbl}
 @include-section{pre-thu-aft.scrbl} @include-section{lab-thu-aft.scrbl}
 
-@include-section{pre-fri-mor.scrbl} @include-section{lab-fri-mor.scrbl}
+@include-section{lab-fri-mor.scrbl} @include-section{pre-fri-mor.scrbl}
 @include-section{pre-fri-aft.scrbl} @; --- 
