@@ -74,6 +74,8 @@ For example, this program:
 produces the number 2 in all of the languages.
 
 @; -----------------------------------------------------------------------------
+@section[#:tag "ltua" #:style 'unnumbered]{Exercises}
+
 @exercise["ex:analyze-functions"]{
 
 Explore the differences between @tt{Functions1}, @tt{Functions2},

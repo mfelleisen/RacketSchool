@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; -----------------------------------------------------------------------------
-@title[#:tag "fri-aft"]{@bold{*} Advanced Testing} 
+@title[#:tag "fri-aft"]{@bold{Robby F.} Advanced Testing} 
 
 @author{Robby Findler}
 

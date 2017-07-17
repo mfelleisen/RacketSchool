@@ -90,8 +90,9 @@ example, this program:
 produces the number 1 in all of the languages.
 
 @; -----------------------------------------------------------------------------
-@exercise["ex:analyze-records"]{
+@section[#:tag "ltum" #:style 'unnumbered]{Exercises}
 
+@exercise["ex:analyze-records"]{
 Explore the differences between @tt{Records1}, @tt{Records2}, and
 @tt{Records3}. Explain their behaviors, and find programs that support your
 explanation. These mystery languages differ in how they treat records, so

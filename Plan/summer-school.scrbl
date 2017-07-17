@@ -37,10 +37,15 @@ Thursday afternoon Matthew F. will take you from extending languages to
  on Friday morning to build your first "hash lang."
 
 Robby F.'s Friday afternoon lecture will cover his experience with random
- testing and how to best use Redex's current random-testing facilities. 
+ testing and how to best use Redex's current random-testing facilities.
  Again, no lab is scheduled to follow this lecture. Instead, feel free to
- pick our brain about various issues concerning languages, semantics,
- teaching and other related issues. 
+ pick our individual and collective brains about various issues concerning
+ languages, semantics, teaching and other related issues.
+
+@bold{Postscript} These notes have been adjusted to reflect the actual
+ summer school schedule and have been updated with links to code and other
+ materials used during the lectures and labs. 
+
 
 @; -----------------------------------------------------------------------------
 @(define (blank) @list[@t{ } 'cont 'cont])
@@ -57,8 +62,8 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
 
 @blank[]
 @; -------------------------------------------------------------------------------------
-@list[ @t{Tuesday}   @secref{tue-mor}                    @secref{tue-aft} ]
-@list[ @t{ }         @secref{lab-tue-mor}	         @secref{lab-tue-aft}]
+@list[ @t{Tuesday}   @secref{tue-mor}                    @secref{lab-tue-aft}]
+@list[ @t{ }         @secref{lab-tue-mor}	         @t{ }]
 
 @blank[]
 @; -------------------------------------------------------------------------------------

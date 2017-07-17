@@ -16,7 +16,14 @@
 @item{modeling the semantics}
 ]
 
-@;common[]
+@; ---------------------------------------------------------------------------------------------------
+@section{Modeling Event Loops}
+
+Justin P. and Shriram K. developed and presented a model of JavaScript's
+event loop. We will post the code for the model soon. 
+
+@; ---------------------------------------------------------------------------------------------------
+@section{Assignable Variables and their Semantics}
 
 One syntax may have many semantics. We will give you three mystery
 languages that have the same syntax but different semantics, and your
@@ -80,6 +87,8 @@ For example, this program:
 produces the number 2 in all of the languages.
 
 @; -----------------------------------------------------------------------------
+@section[#:tag "lwm" #:style 'unnumbered]{Exercises}
+
 @exercise["ex:analyze-variables"]{
 
 Explore the differences between @tt{Variables1}, @tt{Variables2},

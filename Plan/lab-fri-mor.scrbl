@@ -12,6 +12,10 @@
 
 @;common[]
 
+This final day starts with a lab session and a single exercise. Once you
+make it through a significant portion of the exercise, we will switch to
+the lecture on semantic engineering. 
+
 @section[#:tag "lfm" #:style 'unnumbered]{Exercises}
 
 @exercise["ex:model-vs-impl"]{Implement a @tt{#lang} that compiles

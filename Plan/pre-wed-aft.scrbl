@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "wed-aft"]{@bold{*} Semantics Re-engineering} 
+@title[#:tag "wed-aft"]{@bold{Shriram K.} Semantics Re-engineering} 
 
 @author{Shriram Krishnamurthi}
 

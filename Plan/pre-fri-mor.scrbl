@@ -31,7 +31,7 @@ The @link[compare]{comparison module} exports a single function:
  ;; evaluate sample-program in the Redex specification and the Records 
  ;; program and compare results
  ;; EFFECT if the program is a syntax erorr or the two results differ, 
- ;; print reasonng to STDIO 
+ ;; print reasoning to STDIO 
 
  ;; WARNING this version does not support time-outs, exceptions, sandboxing, 
  ;; and other protections. A production validation framework would need all that. 
@@ -71,7 +71,9 @@ Using this function, we can set up a bunch of comparisons like this:
 
 (compare-languages-on '(prog (+ 1 "a")))
 
-; (compare-languages-on '(prog (function f)))
+;; why is the following an unreasonable test? 
+;; (compare-languages-on '(prog (function f)))
+@; Because it tests free variableness instead of something useful
 
 (compare-languages-on '(prog (defun (f x) x) f))
 

@@ -3,7 +3,7 @@
 @(require "shared.rkt")
 
 @; ---------------------------------------------------------------------------------------------------
-@title[#:tag "thu-aft"]{* Building Languages} 
+@title[#:tag "thu-aft"]{@bold{Matthew F.} Building Languages} 
 
 @author{Matthew Flatt}
 
@@ -90,8 +90,8 @@ are special as keywords that cannot be redefined. Instead, seemingly
 core parts of the language, including @racket[lambda], can be defined
 as macros.
 
-@exercise["ex:define-still-lambda"]{What happens if you add
-@racket[(define (f x) 11)] and @racket[(f 10)] to the program?}
+@bold{Stop}! What happens if you add @racket[(define (f x) 11)] and
+@racket[(f 10)] to the program?
 
 @exercise["ex:lambda-via-define"]{Racket's @racket[define] forms can
 appear in @racket[(let () ....)] to make the definition local to the
