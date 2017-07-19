@@ -85,7 +85,7 @@ Using this function, we can set up a bunch of comparisons like this:
 Of course, in the end we want many more comparisons than five, and how to
  set this up is the topic of the concluding lecture in the afternoon. 
 
-@bold{Note} Ryan and Sergey volunteered to subject their
+@bold{Note} Ryan Davis and Sergej Koscejev volunteered to subject their
  @link[ryan]{implementation} of @tt{Records1} to the above testing. In the
  meantime, they have implemented their own comparison function and improved
  their implementation to pass a 1,000 tests.
