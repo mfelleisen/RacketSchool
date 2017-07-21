@@ -46,3 +46,10 @@ to be processed. In the Redex model, this is represented by pushing a
   your own example and view its trace. Read the e-event and e-yield
   reductions in the Redex model, and see if you can make sense of them.
 }
+
+@exercise["ex:fix-event-loop"]{
+  This event loop allows @italic{starvation}: if the @tt{resume}
+  thread runs forever, then the next chunk of @tt{key} events will
+  never be processed, even if @tt{resume} yields infinitely often.
+  Fix this.
+}
