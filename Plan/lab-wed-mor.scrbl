@@ -19,37 +19,6 @@
 @item{modeling the semantics}
 ]
 
-@; ---------------------------------------------------------------------------------------------------
-@section{Modeling Event Loops}
-
-Justin P. and Shriram K. developed and presented a model of JavaScript's
-event loop.
-
-Briefly, the model is this. There are two kinds of events: @tt{key}
-events happen when the user presses a key, and a @tt{resume} event
-returns execution to running a thread. These are assumed to happen
-in chunks, with time in between each chunk: for instance maybe the
-user types `h' `i', then waits a while, then types `w' `o' `r' `l' `d'.
-Thus the events are represented as a list of lists; in this case
-@tt{(((key "h") (key "i")) ((key "w") (key "o") (key "r") (key "l") (key "d")))}. (This is a
-modelling choice; there are many other sensible choices.)
-
-Since it is important that @tt{key} events get processed eventually,
-a @tt{resume} event is allowed to @italic{yield}, and allow
-other events to be processed for a while. In the Redex model, this is
-represented by pushing a @tt{resume} event onto the end of the current
-chunk.
-
-@exercise["ex:try-event-loop"]{
-  Download the @hyperlink[event-loop]{event loop Redex model}. Try running
-  the examples: @tt{(traces event-loop-> t-event{1,2,3,4})}, or write
-  your own example and view its trace. Read the e-event and e-yield
-  reductions in the Redex model, and see if you can make sense of them.
-}
-
-@; ---------------------------------------------------------------------------------------------------
-@section{Assignable Variables and their Semantics}
-
 One syntax may have many semantics. We will give you three mystery
 languages that have the same syntax but different semantics, and your
 task will be to find programs that tell them apart.

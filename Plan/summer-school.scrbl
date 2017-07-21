@@ -68,8 +68,8 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
 @blank[]
 @; -------------------------------------------------------------------------------------
 
-@list[ @t{Wednesday} @secref{wed-mor}                    @secref{wed-aft}]
-@list[ @t{ }         @secref{lab-wed-mor}	         @t{@italic{break}}]
+@list[ @t{Wednesday} @secref{wed-mor}                    @secref{lab-wed-mor}]
+@list[ @t{ }         @secref{lab-wed-event}	         @secref{wed-aft}]
 
 @blank[]
 @; -------------------------------------------------------------------------------------
@@ -86,10 +86,13 @@ Robby F.'s Friday afternoon lecture will cover his experience with random
 @include-section{pre-mon-aft.scrbl} @include-section{lab-mon-aft.scrbl}
 
 @include-section{pre-tue-mor.scrbl} @include-section{lab-tue-mor.scrbl}
-@include-section{pre-tue-aft.scrbl} @include-section{lab-tue-aft.scrbl}
+@;include-section{pre-tue-aft.scrbl}
 
-@include-section{pre-wed-mor.scrbl} @include-section{lab-wed-mor.scrbl}
+@include-section{lab-tue-aft.scrbl}
 
+@include-section{pre-wed-mor.scrbl}
+@include-section{lab-wed-event.scrbl}
+@include-section{lab-wed-mor.scrbl}
 @include-section{pre-wed-aft.scrbl} @; --- 
 
 @include-section{pre-thu-mor.scrbl} @include-section{lab-thu-mor.scrbl}

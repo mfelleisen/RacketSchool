@@ -15,3 +15,6 @@
 @item{some experiences}
 ]
 
+
+Please download @link["sk-scripting-research-talk.pptx"]{Shriram's slides}
+for an overview of the idea. 
