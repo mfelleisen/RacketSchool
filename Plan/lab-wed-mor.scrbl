@@ -19,6 +19,10 @@
 @item{modeling the semantics}
 ]
 
+@bold{Note} While we did not run this lab---replacing it with
+@secref{lab-wed-event} instead---we keep it with these notes for readers
+who wish to study different flavors of imperative languages. 
+
 One syntax may have many semantics. We will give you three mystery
 languages that have the same syntax but different semantics, and your
 task will be to find programs that tell them apart.
