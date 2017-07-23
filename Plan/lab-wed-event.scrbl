@@ -47,7 +47,7 @@ to be processed. In the Redex model, this is represented by pushing a
   make sense of them.  }
 
 @exercise["ex:fix-event-loop"]{This event loop allows @italic{starvation};
- @margin-note*{This exercise is due to Oak.}
+ @margin-note*{This exercise is due to Sorawee Porncharoenwase.}
   that is, if the @tt{resume} thread runs forever, then the next chunk of
   @tt{key} events will never be processed, even if @tt{resume} yields
   infinitely often.  Can you fix this?
