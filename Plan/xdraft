@@ -5,8 +5,7 @@ raco make summer-school.scrbl
 zip -r ql.zip ql/*.rkt ql/*.ql
 
 scribble --htmls ++xref-in setup/xref load-collections-xref \
-#          --redirect-main "http://pre.plt-scheme.org/docs/html/" \
-#  "http://docs.plt-scheme.org/" \
+         --redirect-main "http://docs.racket-lang.org/docs/html/" \
           --dest Tmp/ \
           summer-school.scrbl 
 

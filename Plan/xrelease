@@ -3,7 +3,7 @@
 zip -r ql.zip ql/*.rkt ql/*.ql
 
 scribble --htmls ++xref-in setup/xref load-collections-xref \
-          --redirect-main "http://docs.plt-scheme.org/" \
+          --redirect-main "http://docs.racket-lang.org/" \
           --dest /Users/matthias/0Unison/0Web/ \
           summer-school.scrbl 
 

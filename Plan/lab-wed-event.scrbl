@@ -38,18 +38,19 @@ Since it is important that @tt{key} events get processed eventually, a
 to be processed. In the Redex model, this is represented by pushing a
 @tt{resume} event onto the end of the current chunk.
 
-@section[#:tag "lwe" #:style 'unnumbered]{Exercise}
+@section[#:tag "lwe" #:style 'unnumbered]{Exercises}
 
-@exercise["ex:try-event-loop"]{
-  Download the @hyperlink[event-loop]{event loop Redex model}. Try running
-  the examples: @tt{(traces event-loop-> t-event{1,2,3,4})}, or write
-  your own example and view its trace. Read the e-event and e-yield
-  reductions in the Redex model, and see if you can make sense of them.
-}
+@exercise["ex:try-event-loop"]{Download the @hyperlink[event-loop]{event
+  loop Redex model}. Try running the examples: @tt{(traces event-loop->
+  t-event{1,2,3,4})}, or write your own example and view its trace. Read
+  the e-event and e-yield reductions in the Redex model, and see if you can
+  make sense of them.  }
 
-@exercise["ex:fix-event-loop"]{
-  This event loop allows @italic{starvation}: if the @tt{resume}
-  thread runs forever, then the next chunk of @tt{key} events will
-  never be processed, even if @tt{resume} yields infinitely often.
-  Fix this.
-}
+@exercise["ex:fix-event-loop"]{This event loop allows @italic{starvation};
+ @margin-note*{This exercise is due to Oak.}
+  that is, if the @tt{resume} thread runs forever, then the next chunk of
+  @tt{key} events will never be processed, even if @tt{resume} yields
+  infinitely often.  Can you fix this?
+
+@bold{Note} This question is open-ended. There is an easy fix, and there
+are fixes that suggest interesting implementations.}
