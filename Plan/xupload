@@ -1,0 +1,3 @@
+#!/bin/tcsh -e
+
+raco s3-sync --web Tmp/summer-school s3://summer-school.racket-lang.org/2017/notes
