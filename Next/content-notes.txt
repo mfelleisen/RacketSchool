@@ -12,6 +12,10 @@ Concepts I wish were explained again
 
 ======================================================================
 
+Jack Wrenn modified the info file for the RacketSchool #lang's so that they automatically offer the Redex Stepper. This is a really awesome feature and pretty useful. This enhancement has already made it into Justin's copy of the code, but we should make sure it shows up in the versions used for the summer school.
+
+======================================================================
+
 Mon AM:
 
 Instead of starting off with a language with terms like (lam (x) e), use a language with made-up names. It's hard for people to dissociate (lam (x) e) from its common semantic connotation, and in particular interpet "lam" to mean a lambda, which implies x is bound in e, etc. Whereas at this point we have only uninterpreted syntax, so these connotations are invalid — they have to actually be *defined*.
