@@ -39,7 +39,7 @@ questions and a histogram of the responses are shown in
 There were also two free-form questions; the next two
 sections give the students' answers.
 
-@figure["fig:histograms" "Histograms of Numeric Question's Answers"]{
+@figure["fig:histograms" "Histograms of Numeric Question's Answers; 1 = no, 5 = yes"]{
  @(vc-append (ht-append 30
                         (histogram 1)
                         (histogram 2))
