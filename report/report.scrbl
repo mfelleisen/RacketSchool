@@ -55,7 +55,8 @@ indicated they were female, three black, two hispanic, one
 gay male, one gender non-conforming, one non-binary, one
 LGBT, and four from areas in the world that are not well
 represented (Nepal, Puerto Rico, Brazil, and an unspecified
-developing country).
+developing country). All of those attendees attended the
+school.
 
 @section{Finances}
 
