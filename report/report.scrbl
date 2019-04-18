@@ -47,8 +47,15 @@ organizers of the school.
 
 We had 75 attendees, 38 were domestic students, 7 were
 foreign students, 22 were from industry, and the other 8 are
-from academic institutions but not as students. Four
-indicated they were female.
+from academic institutions but not as students.
+
+We asked applicants to indicate if they were from an
+underrepresented group. Using their own labels, four
+indicated they were female, three black, two hispanic, one
+gay male, one gender non-conforming, one non-binary, one
+LGBT, and four from areas in the world that are not well
+represented (Nepal, Puerto Rico, Brazil, and an unspecified
+developing country).
 
 @section{Finances}
 
