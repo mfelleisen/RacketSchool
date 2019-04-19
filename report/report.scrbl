@@ -78,8 +78,24 @@ school on a number of questions, giving scores from 1-5. The
 questions and a histogram of the responses are shown in
 @figure-ref["fig:histograms"].
 
-There were also two free-form questions; the final two
-sections give the students' answers.
+Overall, these scores show that a large majority of the
+participants answered with either a 4 or a 5 to questions
+asking if they learned what the school advertised and what
+they wanted to learn.
+
+There were also two free-form questions; the next two
+subsections give the full set of students' answers. Students
+overwhelmingly seemed to appreciate Racket's macro system
+and how it helps them build languages. They also appreciated
+the hands-on, in-person experience.
+
+There were two common criticisms. First was that the course
+participant's backgrounds were too varied, meaning that the
+course was too fast for some and too slow for others. We are
+addressing this by having two tracks next year. The other
+was that the type lectures needed more work and we have
+improved them by bringing Jesse Tov into the team for next
+year.
 
 @figure["fig:histograms" "Histograms of Numeric Question's Answers; 1 = no, 5 = yes"]{
  @(vc-append (ht-append 30
@@ -89,10 +105,10 @@ sections give the students' answers.
 }
 
 
-@section{Responses to “@(free-text-question 4)”}
+@subsection{Responses to “@(free-text-question 4)”}
 
 @(free-text-responses 4)
 
-@section{Responses to “@(free-text-question 5)”}
+@subsection{Responses to “@(free-text-question 5)”}
 
 @(free-text-responses 5)
