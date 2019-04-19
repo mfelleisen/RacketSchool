@@ -73,29 +73,27 @@ any support for their travel expenses).
  @(scale (bitmap rs2018-group.jpg) .18)
 }
 
-At the end of the week, we asked attendees to evaluate the
-school on a number of questions, giving scores from 1-5. The
-questions and a histogram of the responses are shown in
-@figure-ref["fig:histograms"].
 
-Overall, these scores show that a large majority of the
-participants answered with either a 4 or a 5 to questions
-asking if they learned what the school advertised and what
-they wanted to learn.
+Every evening during the week, we asked the attendees to respond to some
+basic questions about the day. For example, we asked whether they had
+understood the lecture material, whether they could work with it, whether
+they thought they could already apply the ideas. We used this formative
+evaluation to adjust the lectures of the next day or, in one extreme case,
+to re-arrange the weekly schedule. 
 
-There were also two free-form questions; the next two
-subsections give the full set of students' answers. Students
-overwhelmingly seemed to appreciate Racket's macro system
-and how it helps them build languages. They also appreciated
-the hands-on, in-person experience.
+At the end of the week, we ran a summative evaluation about the school. 
+The evaluation allowed for both ranked answers as well as free-form
+responses. The goal of the evaluation was to find out how well the
+presented material matched the advertisement, how well the students
+learned, and whether all of this matched their expectations. @Figure-ref["fig:histograms"]
+summarizes the attendee's answer with bar charts. These charts demonstrate
+that the vast majority of attendees agreed that the material matched and
+that they understood it at the expected level.
 
-There were two common criticisms. First was that the course
-participant's backgrounds were too varied, meaning that the
-course was too fast for some and too slow for others. We are
-addressing this by having two tracks next year. The other
-was that the type lectures needed more work and we have
-improved them by bringing Jesse Tov into the team for next
-year.
+The following appendix collects the raw source material from the free-form
+responses. They are reflective of the summary. Many responses express
+a high degree of satisfaction with the summer school though some also
+offer criticism.
 
 @figure["fig:histograms" "Histograms of Numeric Question's Answers; 1 = no, 5 = yes"]{
  @(vc-append (ht-append 30
@@ -104,11 +102,32 @@ year.
              (histogram 3))
 }
 
+@section{Our Response}
 
-@subsection{Responses to “@(free-text-question 4)”}
+We have used the feedback from last year's summer school to adjust the
+school for the 2019 incarnation. The most important change is to separate
+Matthew Butterick's Beautiful Racket material from the academic
+one. Beautiful Racket requires less knowledge about Racket than the academic summer
+school and is thus suitable for Racket beginners. 
+
+For the academic summer school we have stretched the schedule. It now comes
+with a significantly slower introduction to syntactic abstractions than
+last year's. Instead of a single day, we will use a day and a half. We are
+prefixing the schedule with an overview of Language-Oriented Programming
+and we are concluding with a research overview. 
+
+Finally, we are rotating in Jay McCarthy as a lecturer on macros to replace
+Matthias Felleisen, and we have invited Jesse Tov from Northwestern to take
+over for Stephen Chang to teach the material on typed domain-specific
+languages. 
+
+@(require (only-in scribble/core element style))
+@(element (style "appendix" '()) '())
+
+@section{Responses to “@(free-text-question 4)”}
 
 @(free-text-responses 4)
 
-@subsection{Responses to “@(free-text-question 5)”}
+@section{Responses to “@(free-text-question 5)”}
 
 @(free-text-responses 5)
